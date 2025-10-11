@@ -3,46 +3,211 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Colors */
-  --color-ivory: #F7F0E6;
-  --color-tadelakt: #E7DCCD;
-  --color-ebony: #1D232A;
-  --color-brass: #C49A58;
-  --color-majorelle: #2A3B8F;
+  /* Atlas Dream Design Tokens */
+  --color-ivory: #f7f0e6;
+  --color-tadelakt: #e7dccd;
+  --color-ebony: #1d232a;
+  --color-muted: #6e737a;
+  --color-brass: #c49a58;
+  --color-majorelle: #2a3b8f;
+  --color-terracotta: #b65e41;
+  --color-palm: #58705e;
+  --color-success: #0fa3a3;
+  --color-danger: #b3261e;
 
-  /* Fonts */
-  --font-inter: 'Inter', sans-serif;
-  --font-cormorant: 'Cormorant Garamond', serif;
+  /* Typography */
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-inter);
+
+  /* Motion */
+  --ease-custom: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 160ms;
+  --duration-base: 240ms;
+  --duration-slow: 420ms;
+
+  /* Radii */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+
+  /* Shadows */
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.08);
+  --shadow-hover-brass: 0 0 0 2px rgba(196, 154, 88, 0.25);
+
+  /* Layout */
+  --navbar-height: 72px;
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-inter);
   background-color: var(--color-ivory);
   color: var(--color-ebony);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.font-cormorant {
-  font-family: var(--font-cormorant);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
-.font-inter {
-  font-family: var(--font-inter);
+h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
 }
 
-.bg-ivory {
-  background-color: var(--color-ivory);
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-.text-ebony {
-  color: var(--color-ebony);
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-.bg-ebony {
+h4 {
+  font-size: 1.375rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Custom Utilities */
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Card Component */
+.card {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(29, 35, 42, 0.06);
+  transition: all var(--duration-base) var(--ease-custom);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover-brass);
+}
+
+/* Button Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: var(--radius-lg);
+  font-weight: 500;
+  font-size: 16px;
+  transition: all var(--duration-base) var(--ease-custom);
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
   background-color: var(--color-ebony);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #161b20;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ebony);
+  border: 1px solid var(--color-brass);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-majorelle);
+}
+
+/* Badge Component */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--color-tadelakt);
+  color: var(--color-ebony);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Parallax effect */
+.parallax {
+  transition: transform var(--duration-slow) var(--ease-custom);
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--duration-base) var(--ease-custom) forwards;
+}
+
+/* Tilt effect for cards */
+.card-tilt {
+  transition: transform var(--duration-base) var(--ease-custom);
+}
+
+.card-tilt:hover {
+  transform: translateY(-8px);
 }
