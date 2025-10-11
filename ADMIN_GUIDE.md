@@ -126,15 +126,33 @@ Pour chaque contenu, n'oubliez pas de remplir :
 
 ## En production
 
-Une fois déployé sur Vercel, l'interface admin sera accessible sur :
+Une fois déployé sur Vercel, l'interface admin est accessible sur :
 ```
-https://votre-domaine.com/admin
+https://atlasdream-76qfo7vnf-ai-ads.vercel.app/admin
 ```
 
-**Important** : Assurez-vous que les variables d'environnement suivantes sont configurées dans Vercel :
-- `DATABASE_URL` : URL de connexion Supabase PostgreSQL
-- `PAYLOAD_SECRET` : Clé secrète pour Payload (générez une clé aléatoire sécurisée)
-- `PAYLOAD_PUBLIC_SERVER_URL` : URL de votre site (ex: https://atlasdream.com)
+**Important** : Vous devez configurer les variables d'environnement suivantes dans Vercel :
+
+1. Allez sur https://vercel.com/ai-ads/atlas_dream/settings/environment-variables
+
+2. Ajoutez ces variables :
+   - `DATABASE_URL` : URL de connexion Supabase PostgreSQL
+     - Format : `postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres`
+     - Trouvez cette URL dans votre projet Supabase (Settings > Database > Connection String)
+
+   - `PAYLOAD_SECRET` : Clé secrète pour Payload (générez une clé aléatoire sécurisée)
+     - Générez avec : `openssl rand -base64 32`
+
+   - `PAYLOAD_PUBLIC_SERVER_URL` : URL publique de votre site
+     - Production : `https://atlasdream-76qfo7vnf-ai-ads.vercel.app`
+     - Ou votre domaine personnalisé si vous en avez un
+
+3. **Redéployez** votre application après avoir ajouté les variables d'environnement :
+   ```bash
+   vercel --prod
+   ```
+
+**Note** : Sans ces variables d'environnement, Payload CMS ne pourra pas se connecter à la base de données et l'admin ne fonctionnera pas.
 
 ## Support
 
