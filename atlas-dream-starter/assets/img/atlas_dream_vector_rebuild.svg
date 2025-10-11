@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800">
+  <defs>
+    <!-- Gold gradient -->
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C8A03A"/>
+      <stop offset="0.25" stop-color="#F5E4A4"/>
+      <stop offset="0.5" stop-color="#B48323"/>
+      <stop offset="0.75" stop-color="#EAD17A"/>
+      <stop offset="1" stop-color="#A9771A"/>
+    </linearGradient>
+
+    <!-- Cross-hatch patterns for the frame -->
+    <pattern id="diag45" patternUnits="userSpaceOnUse" width="22" height="22" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="url(#gold)" stroke-width="2"/>
+      <line x1="11" y1="0" x2="11" y2="22" stroke="url(#gold)" stroke-width="2"/>
+    </pattern>
+
+    <pattern id="diag-45" patternUnits="userSpaceOnUse" width="22" height="22" patternTransform="rotate(-45)">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="url(#gold)" stroke-width="2"/>
+      <line x1="11" y1="0" x2="11" y2="22" stroke="url(#gold)" stroke-width="2"/>
+    </pattern>
+
+    <!-- Clip to the "ring" (outer minus inner rectangle) -->
+    <clipPath id="frame-clip">
+      <path d="M0,0 H1400 V800 H0 Z M48,48 H1352 V752 H48 Z" fill="black" fill-rule="evenodd"/>
+    </clipPath>
+
+    <!-- Navy color for the title -->
+    <style>
+      .title { font-family: "Cinzel", "Trajan Pro", Georgia, serif; font-weight: 600; fill: #12265A; }
+    </style>
+  </defs>
+
+  <!-- Outer cross-hatched frame -->
+  <g clip-path="url(#frame-clip)">
+    <rect x="0" y="0" width="1400" height="800" fill="url(#diag45)" opacity="0.9"/>
+    <rect x="0" y="0" width="1400" height="800" fill="url(#diag-45)" opacity="0.9"/>
+  </g>
+
+  <!-- Inner thin rectangle -->
+  <rect x="120" y="120" width="1160" height="560" fill="none" stroke="url(#gold)" stroke-width="6"/>
+
+
+  <!-- Title: "A" in gold, rest in navy -->
+  <g transform="translate(0, 0)">
+    <text x="700" y="370" font-size="120" text-anchor="middle" class="title">
+      <tspan fill="url(#gold)">A</tspan><tspan>TLAS DREAM</tspan>
+    </text>
+    <!-- gold underline -->
+    <rect x="360" y="390" width="680" height="6" fill="url(#gold)"/>
+  </g>
+
+  <!-- Palm island motif (stylized) -->
+  <g transform="translate(700, 480)" fill="url(#gold)">
+    <!-- island -->
+    <ellipse cx="0" cy="38" rx="54" ry="12"/>
+    <!-- big palm trunk -->
+    <path d="M8,78 C10,48 14,18 22,-6 C24,-12 20,-16 16,-16 C10,-16 6,-10 8,-6 C16,12 18,40 16,78 Z"/>
+    <!-- big palm leaves -->
+    <path d="M24,-8 C38,-18 56,-20 74,-16 C54,-18 42,-10 32,2 C44,0 60,4 74,12 C56,6 40,6 26,10 C36,14 52,26 64,38 C48,24 34,18 24,16 C26,6 26,-2 24,-8 Z"/>
+    <!-- small palm -->
+    <g transform="translate(-24,10) scale(0.65)">
+      <path d="M8,78 C10,48 14,18 22,-6 C24,-12 20,-16 16,-16 C10,-16 6,-10 8,-6 C16,12 18,40 16,78 Z"/>
+      <path d="M24,-8 C38,-18 56,-20 74,-16 C54,-18 42,-10 32,2 C44,0 60,4 74,12 C56,6 40,6 26,10 C36,14 52,26 64,38 C48,24 34,18 24,16 C26,6 26,-2 24,-8 Z"/>
+    </g>
+  </g>
+</svg>
