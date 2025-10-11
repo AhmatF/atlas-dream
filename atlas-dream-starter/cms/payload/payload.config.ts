@@ -26,8 +26,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     meta: {
-      titleSuffix: ' | Atlas Dream Admin',
-      favicon: '/favicon.ico'
+      titleSuffix: ' | Atlas Dream Admin'
     }
   },
   localization: {
