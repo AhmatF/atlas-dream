@@ -7,7 +7,7 @@ Before deploying, ensure you have:
 - ✅ Vercel account logged in (Done)
 - ✅ Vercel project linked (Done)
 - ⏳ Environment variables configured (Next step)
-- ⏳ MongoDB database setup (Required)
+- ⏳ Supabase database setup (Required)
 
 ## Environment Variables Setup
 
@@ -15,12 +15,12 @@ You need to configure the following environment variables in Vercel:
 
 ### Required Variables
 
-1. **DATABASE_URI** (Required for all environments)
-   - Your MongoDB connection string
-   - Example: `mongodb+srv://username:password@cluster.mongodb.net/atlas-dream?retryWrites=true&w=majority`
+1. **DATABASE_URL** (Required for all environments)
+   - Your Supabase PostgreSQL connection string
+   - Example: `postgresql://postgres:[YOUR-PASSWORD]@[PROJECT-REF].supabase.co:5432/postgres`
    - Get this from:
-     - MongoDB Atlas: https://cloud.mongodb.com
-     - Or use local MongoDB: `mongodb://localhost:27017/atlas-dream`
+     - Supabase Dashboard > Project Settings > Database > Connection string (URI)
+     - Use the "URI" tab, not the "Session pooler" tab
 
 2. **PAYLOAD_SECRET** (Required for all environments)
    - A secure random string (minimum 32 characters)
@@ -79,8 +79,8 @@ Run the setup script:
 
 Or manually add each variable:
 ```bash
-# Add DATABASE_URI
-vercel env add DATABASE_URI production preview development
+# Add DATABASE_URL
+vercel env add DATABASE_URL production preview development
 
 # Add PAYLOAD_SECRET
 vercel env add PAYLOAD_SECRET production preview development
@@ -99,23 +99,60 @@ cp .env.example .env
 
 **⚠️ Never commit .env file to git!**
 
-## MongoDB Setup
+## Supabase Setup (PostgreSQL Database)
 
-### Option 1: MongoDB Atlas (Recommended for production)
+### Create a Supabase Project
 
-1. Go to https://cloud.mongodb.com
-2. Create a free account
-3. Create a new cluster (Free M0 tier available)
-4. Click "Connect" → "Connect your application"
-5. Copy the connection string
-6. Replace `<password>` with your database user password
-7. Add this as `DATABASE_URI` in Vercel
+1. **Sign up for Supabase**
+   - Go to https://supabase.com
+   - Create a free account
+   - Click "New Project"
 
-### Option 2: Local MongoDB (Development only)
+2. **Configure your project**
+   - Organization: Select or create one
+   - Name: `atlas-dream` (or your preferred name)
+   - Database Password: Create a strong password (save this!)
+   - Region: Choose closest to your users (e.g., `eu-central-1` for Europe)
+   - Click "Create new project" (takes ~2 minutes)
 
-1. Install MongoDB locally
-2. Start MongoDB service
-3. Use connection string: `mongodb://localhost:27017/atlas-dream`
+3. **Get your connection string**
+   - Once the project is ready, go to **Project Settings** (gear icon in sidebar)
+   - Click **Database** in the left menu
+   - Scroll to **Connection string** section
+   - Select **URI** tab (not Session pooler)
+   - Copy the connection string (it looks like):
+     ```
+     postgresql://postgres:[YOUR-PASSWORD]@db.abc123def456.supabase.co:5432/postgres
+     ```
+   - Replace `[YOUR-PASSWORD]` with the password you created in step 2
+
+4. **Add to environment variables**
+   - Add this connection string as `DATABASE_URL` in Vercel
+   - Also add it to your local `.env` file for development
+
+### Enable Required Extensions (Optional)
+
+Payload CMS may need certain PostgreSQL extensions. To enable them:
+
+1. In Supabase Dashboard, go to **Database** > **Extensions**
+2. Search for and enable:
+   - `uuid-ossp` (for UUID generation)
+   - `pg_trgm` (for text search - optional)
+
+### Local Development with Supabase
+
+You can use the same Supabase database for local development, or set up a separate project:
+
+**Option 1: Use same database (simpler)**
+```bash
+# In .env file
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.abc123def456.supabase.co:5432/postgres
+```
+
+**Option 2: Separate dev database**
+- Create a second Supabase project named `atlas-dream-dev`
+- Use its connection string for local development
+- Keep production database separate
 
 ## Deployment Steps
 
@@ -197,13 +234,15 @@ Ensure you meet the performance budgets:
 
 1. Check build logs in Vercel dashboard
 2. Verify all environment variables are set
-3. Ensure MongoDB connection string is valid
+3. Ensure Supabase connection string is valid
+4. Check that `DATABASE_URL` format is correct (starts with `postgresql://`)
 
 ### Can't Access Admin Panel
 
 1. Verify `PAYLOAD_SECRET` is set
-2. Check MongoDB connection
+2. Check Supabase connection (test in Supabase dashboard)
 3. Look for errors in Vercel logs
+4. Ensure database migrations ran successfully
 
 ### 404 Errors
 
@@ -244,12 +283,15 @@ Add Google Analytics:
 
 ### Database Backups
 
-MongoDB Atlas automatically backs up your data.
+Supabase automatically backs up your database daily (free tier: 7 days retention).
 
 For manual backups:
-```bash
-mongodump --uri="your-mongodb-connection-string"
-```
+1. In Supabase Dashboard, go to **Database** > **Backups**
+2. Click "Create backup" for an instant backup
+3. Or use `pg_dump` for local backups:
+   ```bash
+   pg_dump "your-supabase-connection-string" > backup.sql
+   ```
 
 ### Code Backups
 

@@ -9,7 +9,7 @@ echo ""
 echo "This script will help you add environment variables to your Vercel project."
 echo "You'll need to provide values for the following:"
 echo ""
-echo "  1. DATABASE_URI - MongoDB connection string"
+echo "  1. DATABASE_URL - Supabase PostgreSQL connection string"
 echo "  2. PAYLOAD_SECRET - Secret key for Payload CMS (min 32 characters)"
 echo "  3. NEXT_PUBLIC_URL - Your production URL (will be auto-set by Vercel)"
 echo ""
@@ -40,10 +40,12 @@ add_env_var() {
   echo ""
 }
 
-# Add DATABASE_URI for all environments
-echo "📦 Setting up DATABASE_URI..."
-echo "This should be your MongoDB connection string (e.g., mongodb+srv://...)"
-add_env_var "DATABASE_URI" "MongoDB connection string" "production preview development"
+# Add DATABASE_URL for all environments
+echo "📦 Setting up DATABASE_URL..."
+echo "This should be your Supabase PostgreSQL connection string"
+echo "Get it from: Supabase Dashboard > Project Settings > Database > Connection string (URI)"
+echo "Format: postgresql://postgres:[YOUR-PASSWORD]@[PROJECT-REF].supabase.co:5432/postgres"
+add_env_var "DATABASE_URL" "Supabase PostgreSQL connection string" "production preview development"
 
 # Add PAYLOAD_SECRET for all environments
 echo "🔐 Setting up PAYLOAD_SECRET..."

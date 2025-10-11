@@ -7,7 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Atlas Dream** is a luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services. This is an MVP with bilingual support (EN/FR) focused on lead generation without online payments.
 
 **Key Architecture:**
-- **CMS Backend:** Payload CMS with TypeScript collections
+- **CMS Backend:** Payload CMS v3 with TypeScript collections
+- **Database:** Supabase (PostgreSQL) with `@payloadcms/db-postgres` adapter
 - **Content Management:** Bilingual content (EN/FR) with localized fields
 - **Lead Capture:** WhatsApp, phone calls, and Calendly integration
 - **Design System:** Token-based design defined in `/atlas-dream-starter/design/design.json`

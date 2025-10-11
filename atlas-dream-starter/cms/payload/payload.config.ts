@@ -1,6 +1,7 @@
 
 import path from 'path';
 import { buildConfig } from 'payload/config';
+import { postgresAdapter } from '@payloadcms/db-postgres';
 
 import Users from './collections/Users';
 import Media from './collections/Media';
@@ -14,6 +15,14 @@ import Leads from './collections/Leads';
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+
+  // Database adapter for Supabase (PostgreSQL)
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || '',
+    },
+  }),
+
   admin: {
     user: Users.slug,
     meta: {

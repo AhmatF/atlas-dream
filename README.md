@@ -15,7 +15,8 @@ Atlas Dream is an MVP focused on lead generation without online payments. It fea
 ## Tech Stack
 
 - **Framework**: Next.js 14 with TypeScript
-- **CMS**: Payload CMS v3 with MongoDB
+- **CMS**: Payload CMS v3 with PostgreSQL (Supabase)
+- **Database**: Supabase (PostgreSQL)
 - **Styling**: Design tokens (see `/atlas-dream-starter/design/design.json`)
 - **Deployment**: Vercel
 - **Version Control**: GitHub
@@ -29,7 +30,7 @@ Atlas Dream is an MVP focused on lead generation without online payments. It fea
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB (local or Atlas)
+- Supabase account (free tier available)
 - Vercel account
 - GitHub account
 
@@ -52,10 +53,16 @@ Atlas Dream is an MVP focused on lead generation without online payments. It fea
    ```
 
    Edit `.env` and add your configuration:
-   - `DATABASE_URI`: Your MongoDB connection string
-   - `PAYLOAD_SECRET`: Generate a secure secret
+   - `DATABASE_URL`: Your Supabase PostgreSQL connection string
+   - `PAYLOAD_SECRET`: Generate a secure secret (`openssl rand -base64 32`)
    - `NEXT_PUBLIC_WHATSAPP_NUMBER`: Your WhatsApp business number
    - `NEXT_PUBLIC_CALENDLY_URL`: Your Calendly booking link
+
+   **Getting Supabase Connection String:**
+   1. Create a project at https://supabase.com
+   2. Go to Project Settings > Database
+   3. Copy the URI connection string
+   4. Replace `[YOUR-PASSWORD]` with your database password
 
 4. **Run the development server**:
    ```bash
