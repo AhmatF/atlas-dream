@@ -1,5 +1,5 @@
 
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 const Pages: CollectionConfig = {
   slug: 'pages',
