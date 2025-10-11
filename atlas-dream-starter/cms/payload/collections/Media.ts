@@ -6,7 +6,6 @@ const Media: CollectionConfig = {
   admin: { useAsTitle: 'alt' },
   upload: {
     staticDir: 'media',
-    staticURL: '/media',
     mimeTypes: ['image/*']
   },
   fields: [
