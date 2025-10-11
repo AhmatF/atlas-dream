@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import BentoGrid from '@/components/BentoGrid';
+import Icon from '@/components/Icon';
 import Link from 'next/link';
 
 const homeContent = {
@@ -9,10 +10,10 @@ const homeContent = {
       subheadline: 'Private driver at the airport, curated villas, five‑star concierge — fluent English, transparent pricing.',
     },
     usps: [
-      { text: 'Airport meet & greet' },
-      { text: 'English‑speaking drivers' },
-      { text: 'Transparent pricing' },
-      { text: 'Curated only • 24/7 support' },
+      { text: 'Airport meet & greet', icon: 'airport_meet' },
+      { text: 'English‑speaking drivers', icon: 'chauffeur' },
+      { text: 'Transparent pricing', icon: 'support_24_7' },
+      { text: 'Curated only • 24/7 support', icon: 'support_24_7' },
     ],
     contact: {
       title: 'Ready to start your journey?',
@@ -27,10 +28,10 @@ const homeContent = {
       subheadline: 'Chauffeur privé à l\'aéroport, villas sélectionnées, conciergerie 5★ — en anglais, prix clairs.',
     },
     usps: [
-      { text: 'Accueil aéroport' },
-      { text: 'Chauffeurs anglophones' },
-      { text: 'Prix 100% clairs' },
-      { text: 'Sélection ultra‑soignée • Assistance 24/7' },
+      { text: 'Accueil aéroport', icon: 'airport_meet' },
+      { text: 'Chauffeurs anglophones', icon: 'chauffeur' },
+      { text: 'Prix 100% clairs', icon: 'support_24_7' },
+      { text: 'Sélection ultra‑soignée • Assistance 24/7', icon: 'support_24_7' },
     ],
     contact: {
       title: 'Prêt à commencer votre voyage ?',
@@ -75,20 +76,8 @@ export default async function HomePage({
                 key={index}
                 className="flex items-center gap-3 p-4 rounded-xl bg-[var(--color-ivory)] transition-all duration-300 hover:shadow-md"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--color-brass)] flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-brass)] flex items-center justify-center p-2">
+                  <Icon name={usp.icon} className="w-full h-full object-contain brightness-0 invert" />
                 </div>
                 <p className="text-sm font-medium text-[var(--color-ebony)]">{usp.text}</p>
               </div>

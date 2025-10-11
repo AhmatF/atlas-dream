@@ -1,0 +1,34 @@
+<svg width="665" height="266" viewBox="0 0 665 266" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Border pattern -->
+  <rect x="1" y="1" width="663" height="264" fill="white" stroke="#C49A58" stroke-width="2"/>
+
+  <!-- Lattice pattern border -->
+  <pattern id="lattice" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M0 10 L10 0 L20 10 L10 20 Z" fill="none" stroke="#C49A58" stroke-width="1"/>
+  </pattern>
+  <rect x="4" y="4" width="657" height="258" fill="none" stroke="url(#lattice)" stroke-width="8"/>
+
+  <!-- Atlas Dream text -->
+  <text x="332" y="125" font-family="serif" font-size="72" font-weight="700" fill="#1D232A" text-anchor="middle" letter-spacing="-1">
+    <tspan fill="#C49A58">A</tspan>TLAS DREAM
+  </text>
+
+  <!-- Decorative line -->
+  <line x1="160" y1="145" x2="505" y2="145" stroke="#C49A58" stroke-width="1"/>
+
+  <!-- Palm trees and crescent moon -->
+  <g transform="translate(280, 165)">
+    <!-- Left palm tree -->
+    <path d="M0 30 Q-5 20 -10 10 Q-8 15 -5 20 L0 30" fill="#C49A58"/>
+    <path d="M0 30 Q5 20 10 10 Q8 15 5 20 L0 30" fill="#C49A58"/>
+    <rect x="-2" y="30" width="4" height="25" fill="#C49A58"/>
+
+    <!-- Right palm tree -->
+    <path d="M35 35 Q30 25 25 15 Q27 20 30 25 L35 35" fill="#C49A58"/>
+    <path d="M35 35 Q40 25 45 15 Q43 20 40 25 L35 35" fill="#C49A58"/>
+    <rect x="33" y="35" width="4" height="20" fill="#C49A58"/>
+
+    <!-- Crescent moon -->
+    <path d="M60 20 Q70 15 70 25 Q70 35 60 30 Q65 25 60 20" fill="#C49A58"/>
+  </g>
+</svg>

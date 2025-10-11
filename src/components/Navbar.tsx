@@ -55,8 +55,12 @@ export default function Navbar({ lang }: NavbarProps) {
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href={`/${lang}`} className="text-2xl font-bold" style={{ fontFamily: 'var(--font-cormorant)' }}>
-            Atlas Dream
+          <Link href={`/${lang}`} className="flex items-center">
+            <img
+              src="/logo/atlas-dream-logo.svg"
+              alt="Atlas Dream"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
