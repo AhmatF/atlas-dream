@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --color-ivory: #F7F0E6;
+  --color-tadelakt: #E7DCCD;
+  --color-ebony: #1D232A;
+  --color-brass: #C49A58;
+  --color-majorelle: #2A3B8F;
+
+  /* Fonts */
+  --font-inter: 'Inter', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--color-ivory);
+  color: var(--color-ebony);
+}
+
+.font-cormorant {
+  font-family: var(--font-cormorant);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.bg-ivory {
+  background-color: var(--color-ivory);
+}
+
+.text-ebony {
+  color: var(--color-ebony);
+}
+
+.bg-ebony {
+  background-color: var(--color-ebony);
+}

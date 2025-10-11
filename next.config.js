@@ -1,14 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
 
-  // i18n routing
-  i18n: {
-    locales: ['en', 'fr'],
-    defaultLocale: 'en',
-    localeDetection: true,
-  },
+  // i18n routing for App Router (Next.js 15+)
+  // Note: i18n is now handled via middleware in App Router
+  // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
   // Image optimization
   images: {
@@ -62,10 +58,6 @@ const nextConfig = {
     return config
   },
 
-  // Performance budgets
-  experimental: {
-    optimizeCss: true,
-  },
 }
 
 module.exports = nextConfig
