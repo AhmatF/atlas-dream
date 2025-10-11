@@ -35,7 +35,9 @@ const Villas: CollectionConfig = {
   ],
   hooks: {
     beforeValidate: [({ data }) => {
-      if (!data.slug && data.name) data.slug = slugify(data.name);
+      if (data && !data.slug && data.name) {
+        data.slug = slugify(data.name);
+      }
       return data;
     }]
   }

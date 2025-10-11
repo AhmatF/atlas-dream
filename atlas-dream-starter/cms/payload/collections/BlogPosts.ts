@@ -28,7 +28,9 @@ const BlogPosts: CollectionConfig = {
   ],
   hooks: {
     beforeValidate: [({ data }) => {
-      if (!data.slug && data.title) data.slug = slugify(data.title);
+      if (data && !data.slug && data.title) {
+        data.slug = slugify(data.title);
+      }
       return data;
     }]
   }
