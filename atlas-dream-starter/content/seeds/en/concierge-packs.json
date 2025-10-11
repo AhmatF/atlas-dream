@@ -1,0 +1,95 @@
+[
+  {
+    "tier": "essential",
+    "name": {
+      "en": "Essential",
+      "fr": "Essential"
+    },
+    "whatsIncluded": [
+      {
+        "item": {
+          "en": "Airport meet & greet",
+          "fr": "Accueil aéroport"
+        }
+      },
+      {
+        "item": {
+          "en": "Restaurant reservations",
+          "fr": "Réservations restaurants"
+        }
+      },
+      {
+        "item": {
+          "en": "12/7 assistance",
+          "fr": "Assistance 12/7"
+        }
+      }
+    ],
+    "priceFromNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    }
+  },
+  {
+    "tier": "signature",
+    "name": {
+      "en": "Signature",
+      "fr": "Signature"
+    },
+    "whatsIncluded": [
+      {
+        "item": {
+          "en": "Full trip planning",
+          "fr": "Planification complète"
+        }
+      },
+      {
+        "item": {
+          "en": "Activities & spa bookings",
+          "fr": "Réservations activités & spa"
+        }
+      },
+      {
+        "item": {
+          "en": "24/7 support",
+          "fr": "Support 24/7"
+        }
+      }
+    ],
+    "priceFromNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    }
+  },
+  {
+    "tier": "prestige",
+    "name": {
+      "en": "Prestige",
+      "fr": "Prestige"
+    },
+    "whatsIncluded": [
+      {
+        "item": {
+          "en": "Private chef",
+          "fr": "Chef privé"
+        }
+      },
+      {
+        "item": {
+          "en": "On‑demand chauffeur",
+          "fr": "Chauffeur à la demande"
+        }
+      },
+      {
+        "item": {
+          "en": "Exclusive experiences",
+          "fr": "Expériences exclusives"
+        }
+      }
+    ],
+    "priceFromNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    }
+  }
+]

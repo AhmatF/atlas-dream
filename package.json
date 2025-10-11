@@ -1,0 +1,37 @@
+{
+  "name": "atlas-dream",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Atlas Dream - Luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:graphql": "payload generate:graphQLSchema"
+  },
+  "dependencies": {
+    "@payloadcms/db-mongodb": "^3.0.0",
+    "@payloadcms/next": "^3.0.0",
+    "@payloadcms/richtext-lexical": "^3.0.0",
+    "@payloadcms/ui": "^3.0.0",
+    "payload": "^3.0.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

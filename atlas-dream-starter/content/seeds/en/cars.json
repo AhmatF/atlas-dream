@@ -1,0 +1,168 @@
+[
+  {
+    "name": {
+      "en": "Range Rover Vogue",
+      "fr": "Range Rover Vogue"
+    },
+    "brand": "Land Rover",
+    "year": 2024,
+    "seats": 5,
+    "transmission": "Automatic",
+    "color": "Black",
+    "priceDayNote": {
+      "en": "From €320/day (self‑drive) — indicative",
+      "fr": "À partir de 320€/jour (sans chauffeur) — indicatif"
+    },
+    "priceWithDriverNote": {
+      "en": "From €420/day with driver",
+      "fr": "À partir de 420€/jour avec chauffeur"
+    },
+    "included": [
+      {
+        "text": {
+          "en": "Airport meet & bottled water",
+          "fr": "Accueil aéroport & eau"
+        }
+      }
+    ],
+    "options": [
+      {
+        "name": {
+          "en": "On‑board Wi‑Fi",
+          "fr": "Wi‑Fi embarqué"
+        },
+        "priceNote": {
+          "en": "€10/day",
+          "fr": "10€/jour"
+        }
+      },
+      {
+        "name": {
+          "en": "Child seat (0–3 / 4–7)",
+          "fr": "Siège enfant (0–3 / 4–7)"
+        },
+        "priceNote": {
+          "en": "€5/day",
+          "fr": "5€/jour"
+        }
+      },
+      {
+        "name": {
+          "en": "Extended insurance",
+          "fr": "Assurance étendue"
+        },
+        "priceNote": {
+          "en": "on quotation",
+          "fr": "sur devis"
+        }
+      }
+    ],
+    "airportMeet": true,
+    "districts": [
+      "Palmeraie",
+      "Hivernage",
+      "Agdal",
+      "Guéliz",
+      "Amelkis",
+      "Al Maaden",
+      "Médina"
+    ],
+    "published": true
+  },
+  {
+    "name": {
+      "en": "Mercedes‑Benz S‑Class",
+      "fr": "Mercedes‑Benz Classe S"
+    },
+    "brand": "Mercedes‑Benz",
+    "year": 2023,
+    "seats": 4,
+    "transmission": "Automatic",
+    "color": "Obsidian Black",
+    "priceDayNote": {
+      "en": "From €380/day — indicative",
+      "fr": "À partir de 380€/jour — indicatif"
+    },
+    "priceWithDriverNote": {
+      "en": "From €480/day with driver",
+      "fr": "À partir de 480€/jour avec chauffeur"
+    },
+    "included": [
+      {
+        "text": {
+          "en": "English‑speaking chauffeur",
+          "fr": "Chauffeur anglophone"
+        }
+      }
+    ],
+    "options": [
+      {
+        "name": {
+          "en": "On‑board Wi‑Fi",
+          "fr": "Wi‑Fi embarqué"
+        },
+        "priceNote": {
+          "en": "€10/day",
+          "fr": "10€/jour"
+        }
+      }
+    ],
+    "airportMeet": true,
+    "districts": [
+      "Palmeraie",
+      "Hivernage",
+      "Agdal",
+      "Guéliz",
+      "Médina"
+    ],
+    "published": true
+  },
+  {
+    "name": {
+      "en": "Mercedes‑Benz V‑Class (7‑seater)",
+      "fr": "Mercedes‑Benz Classe V (7 places)"
+    },
+    "brand": "Mercedes‑Benz",
+    "year": 2024,
+    "seats": 7,
+    "transmission": "Automatic",
+    "color": "Black",
+    "priceDayNote": {
+      "en": "From €290/day — indicative",
+      "fr": "À partir de 290€/jour — indicatif"
+    },
+    "priceWithDriverNote": {
+      "en": "From €380/day with driver",
+      "fr": "À partir de 380€/jour avec chauffeur"
+    },
+    "included": [
+      {
+        "text": {
+          "en": "Airport meet & greet",
+          "fr": "Accueil aéroport"
+        }
+      }
+    ],
+    "options": [
+      {
+        "name": {
+          "en": "Child seats (2)",
+          "fr": "Deux sièges enfant"
+        },
+        "priceNote": {
+          "en": "€8/day",
+          "fr": "8€/jour"
+        }
+      }
+    ],
+    "airportMeet": true,
+    "districts": [
+      "Palmeraie",
+      "Hivernage",
+      "Agdal",
+      "Guéliz",
+      "Route de l’Ourika"
+    ],
+    "published": true
+  }
+]

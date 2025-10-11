@@ -1,0 +1,36 @@
+
+import path from 'path';
+import { buildConfig } from 'payload/config';
+
+import Users from './collections/Users';
+import Media from './collections/Media';
+import Cars from './collections/Cars';
+import Villas from './collections/Villas';
+import ConciergePacks from './collections/ConciergePacks';
+import ConciergeAlaCarte from './collections/ConciergeAlaCarte';
+import BlogPosts from './collections/BlogPosts';
+import Pages from './collections/Pages';
+import Leads from './collections/Leads';
+
+export default buildConfig({
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  admin: {
+    user: Users.slug,
+    meta: {
+      titleSuffix: ' | Atlas Dream Admin',
+      favicon: '/favicon.ico'
+    }
+  },
+  localization: {
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
+    fallback: true
+  },
+  collections: [Users, Media, Cars, Villas, ConciergePacks, ConciergeAlaCarte, BlogPosts, Pages, Leads],
+  typescript: {
+    outputFile: path.resolve(__dirname, 'payload-types.ts')
+  },
+  graphQL: {
+    schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql')
+  }
+});

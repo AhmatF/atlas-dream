@@ -1,0 +1,136 @@
+{
+  "brand": {
+    "name": "Atlas Dream",
+    "logo": {
+      "primary": "/assets/logo/atlas-dream.svg",
+      "safeArea": 12
+    }
+  },
+  "colors": {
+    "bg": "#F7F0E6",
+    "surface": "#E7DCCD",
+    "text": "#1D232A",
+    "muted": "#6E737A",
+    "gold": "#C49A58",
+    "majorelle": "#2A3B8F",
+    "terracotta": "#B65E41",
+    "palm": "#58705E",
+    "success": "#0FA3A3",
+    "danger": "#B3261E"
+  },
+  "typography": {
+    "headings": {
+      "family": "Cormorant Garamond",
+      "weights": [
+        600,
+        700
+      ],
+      "tracking": -1
+    },
+    "body": {
+      "family": "Inter",
+      "weights": [
+        400,
+        500,
+        600
+      ],
+      "size": 16,
+      "leading": 1.65
+    },
+    "scale": {
+      "h1": 56,
+      "h2": 40,
+      "h3": 28,
+      "h4": 22,
+      "h5": 18
+    }
+  },
+  "radii": {
+    "sm": 12,
+    "md": 16,
+    "lg": 20,
+    "xl": 24
+  },
+  "shadows": {
+    "card": "0 6px 24px rgba(0,0,0,0.08)",
+    "hoverGold": "0 0 0 2px rgba(196,154,88,0.25)"
+  },
+  "layout": {
+    "container": 1200,
+    "grid": {
+      "columns": 12,
+      "gutter": 24
+    },
+    "breakpoints": {
+      "sm": 640,
+      "md": 768,
+      "lg": 1024,
+      "xl": 1280
+    }
+  },
+  "motion": {
+    "easing": "cubic-bezier(0.22,1,0.36,1)",
+    "durations": {
+      "fast": 160,
+      "base": 240,
+      "slow": 420
+    },
+    "parallax": {
+      "strength": 0.06
+    }
+  },
+  "components": {
+    "Button": {
+      "padding": {
+        "x": 22,
+        "y": 14
+      },
+      "radius": "{radii.lg}",
+      "variants": {
+        "primary": {
+          "bg": "#1D232A",
+          "text": "#FFFFFF",
+          "hoverBg": "#161B20"
+        },
+        "ghost": {
+          "bg": "transparent",
+          "text": "#1D232A",
+          "border": "1px solid #C49A58",
+          "hoverBorder": "1px solid #2A3B8F"
+        },
+        "link": {
+          "text": "#2A3B8F"
+        }
+      }
+    },
+    "Card": {
+      "bg": "#FFFFFF",
+      "radius": "{radii.xl}",
+      "shadow": "{shadows.card}",
+      "border": "1px solid rgba(29,35,42,0.06)"
+    },
+    "Badge": {
+      "bg": "#E7DCCD",
+      "text": "#1D232A",
+      "radius": 999
+    },
+    "Navbar": {
+      "height": 72,
+      "blur": "backdrop-blur-md",
+      "links": [
+        "Home",
+        "Cars",
+        "Villas",
+        "Concierge",
+        "Blog"
+      ],
+      "cta": "Book a call"
+    },
+    "Hero": {
+      "height": 720,
+      "overlay": "linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.32) 100%)",
+      "headlineEffect": "glitch-subtle",
+      "patternOpacity": 0.06
+    }
+  }
+}

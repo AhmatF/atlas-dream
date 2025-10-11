@@ -1,0 +1,107 @@
+[
+  {
+    "name": {
+      "en": "Villa Palmeraie Lumière",
+      "fr": "Villa Palmeraie Lumière"
+    },
+    "district": "Palmeraie",
+    "bedrooms": 5,
+    "bathrooms": 5,
+    "guests": 10,
+    "pricePerNightNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    },
+    "minNights": 3,
+    "highlights": [
+      {
+        "text": {
+          "en": "Palm garden & heated pool",
+          "fr": "Jardin de palmiers & piscine chauffée"
+        }
+      }
+    ],
+    "amenities": [
+      {
+        "text": {
+          "en": "Private chef available",
+          "fr": "Chef privé disponible"
+        }
+      },
+      {
+        "text": {
+          "en": "Daily housekeeping",
+          "fr": "Ménage quotidien"
+        }
+      }
+    ],
+    "conciergeIncluded": true,
+    "published": true
+  },
+  {
+    "name": {
+      "en": "Riad Médina Safran",
+      "fr": "Riad Médina Safran"
+    },
+    "district": "Médina",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "guests": 8,
+    "pricePerNightNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    },
+    "minNights": 3,
+    "highlights": [
+      {
+        "text": {
+          "en": "Traditional patio with zellige",
+          "fr": "Patio traditionnel en zellige"
+        }
+      }
+    ],
+    "amenities": [
+      {
+        "text": {
+          "en": "Hammam & massage room",
+          "fr": "Hammam & salle de massage"
+        }
+      }
+    ],
+    "conciergeIncluded": true,
+    "published": true
+  },
+  {
+    "name": {
+      "en": "Villa Hivernage Atlas",
+      "fr": "Villa Hivernage Atlas"
+    },
+    "district": "Hivernage",
+    "bedrooms": 6,
+    "bathrooms": 6,
+    "guests": 12,
+    "pricePerNightNote": {
+      "en": "on quotation",
+      "fr": "sur devis"
+    },
+    "minNights": 3,
+    "highlights": [
+      {
+        "text": {
+          "en": "Roof terrace with Atlas views",
+          "fr": "Toit‑terrasse vue Atlas"
+        }
+      }
+    ],
+    "amenities": [
+      {
+        "text": {
+          "en": "Heated pool & cinema room",
+          "fr": "Piscine chauffée & salle cinéma"
+        }
+      }
+    ],
+    "conciergeIncluded": true,
+    "published": true
+  }
+]

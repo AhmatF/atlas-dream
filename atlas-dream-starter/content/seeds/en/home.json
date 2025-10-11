@@ -1,0 +1,23 @@
+{
+  "key": "home",
+  "title": "Atlas Dream — Luxury & Authentic Marrakech",
+  "hero": {
+    "headline": "Luxury & authenticity in Marrakech — effortless.",
+    "subheadline": "Private driver at the airport, curated villas, five‑star concierge — fluent English, transparent pricing."
+  },
+  "usps": [
+    {
+      "text": "Airport meet & greet"
+    },
+    {
+      "text": "English‑speaking drivers"
+    },
+    {
+      "text": "Transparent pricing"
+    },
+    {
+      "text": "Curated only • 24/7 support"
+    }
+  ],
+  "content": "### Explore\nThree ways to travel beautifully: **Reserve a Car**, **Explore Villas**, **Concierge 5★**."
+}
