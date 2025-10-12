@@ -10,10 +10,12 @@ const supabaseS3StoragePlugin = s3Storage({
       prefix: 'media',
       disableLocalStorage: true,
       generateFileURL: ({ filename, prefix }) => {
-        const projectRef = process.env.S3_ENDPOINT?.match(/https:\/\/([^.]+)/)?.[1] || 'zbywcmcsktsjyithyvre';
-        const bucket = process.env.S3_BUCKET || 'media';
-        const actualPrefix = prefix || 'media';
-        return `https://${projectRef}.supabase.co/storage/v1/object/public/${bucket}/${actualPrefix}/${filename}`;
+        // Clean environment variables of any trailing newlines or whitespace
+        const projectRef = (process.env.S3_ENDPOINT?.match(/https:\/\/([^.]+)/)?.[1] || 'zbywcmcsktsjyithyvre').trim();
+        const bucket = (process.env.S3_BUCKET || 'media').trim();
+        const actualPrefix = (prefix || 'media').trim();
+        const cleanFilename = filename.trim();
+        return `https://${projectRef}.supabase.co/storage/v1/object/public/${bucket}/${actualPrefix}/${cleanFilename}`;
       },
     },
   },
