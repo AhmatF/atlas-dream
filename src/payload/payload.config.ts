@@ -3,16 +3,16 @@ import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 
-import Users from './collections/Users';
-import Media from './collections/Media';
-import Cars from './collections/Cars';
-import Villas from './collections/Villas';
-import ConciergePacks from './collections/ConciergePacks';
-import ConciergeAlaCarte from './collections/ConciergeAlaCarte';
-import BlogPosts from './collections/BlogPosts';
-import Pages from './collections/Pages';
-import Leads from './collections/Leads';
-import { supabaseS3StoragePlugin } from './plugins/s3Storage';
+import Users from './collections/Users.ts';
+import Media from './collections/Media.ts';
+import Cars from './collections/Cars.ts';
+import Villas from './collections/Villas.ts';
+import ConciergePacks from './collections/ConciergePacks.ts';
+import ConciergeAlaCarte from './collections/ConciergeAlaCarte.ts';
+import BlogPosts from './collections/BlogPosts.ts';
+import Pages from './collections/Pages.ts';
+import Leads from './collections/Leads.ts';
+import { supabaseS3StoragePlugin } from './plugins/s3Storage.ts';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',

@@ -5,7 +5,7 @@
   "description": "Atlas Dream - Luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services",
   "scripts": {
     "dev": "next dev",
-    "build": "payload generate:importmap && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "payload": "payload",
