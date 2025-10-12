@@ -15,13 +15,17 @@ import Leads from './collections/Leads';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  serverURL:
+    process.env.PAYLOAD_PUBLIC_SERVER_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
 
   // Database adapter for Supabase (PostgreSQL)
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     },
+    push: false,
   }),
 
   admin: {
