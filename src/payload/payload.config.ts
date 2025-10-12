@@ -12,7 +12,7 @@ import ConciergeAlaCarte from './collections/ConciergeAlaCarte';
 import BlogPosts from './collections/BlogPosts';
 import Pages from './collections/Pages';
 import Leads from './collections/Leads';
-import { supabaseStoragePlugin } from './plugins/supabaseStorage';
+import { supabaseS3StoragePlugin } from './plugins/s3Storage';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
@@ -45,7 +45,7 @@ export default buildConfig({
     fallback: true
   },
   plugins: [
-    supabaseStoragePlugin,
+    supabaseS3StoragePlugin,
   ],
   collections: [Users, Media, Cars, Villas, ConciergePacks, ConciergeAlaCarte, BlogPosts, Pages, Leads],
   typescript: {

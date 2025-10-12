@@ -61,6 +61,9 @@ for env in production preview development; do
     add_env_var "SUPABASE_SERVICE_ROLE_KEY" "$SERVICE_ROLE_KEY" "$env"
 done
 
+# Note: Les variables NEXT_PUBLIC_SUPABASE_* peuvent déjà exister
+# Ce n'est pas grave, elles seront mises à jour
+
 echo ""
 echo "✅ All variables added successfully!"
 echo ""

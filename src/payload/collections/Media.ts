@@ -10,10 +10,7 @@ const Media: CollectionConfig = {
     update: ({ req: { user } }) => !!user, // Only authenticated users can update
     delete: ({ req: { user } }) => !!user, // Only authenticated users can delete
   },
-  upload: {
-    // staticDir removed - using Supabase Storage via plugin
-    mimeTypes: ['image/*']
-  },
+  upload: true,
   fields: [
     { name: 'alt', type: 'text', localized: true, required: true }
   ]
