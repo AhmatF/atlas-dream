@@ -5,12 +5,13 @@
   "description": "Atlas Dream - Luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "payload generate:importmap && next build",
     "start": "next start",
     "lint": "next lint",
     "payload": "payload",
     "generate:types": "payload generate:types",
     "generate:graphql": "payload generate:graphQLSchema",
+    "generate:importmap": "payload generate:importmap",
     "migrate:images": "tsx migrate-images-to-supabase.ts"
   },
   "dependencies": {
