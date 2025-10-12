@@ -13,6 +13,7 @@
     "generate:graphql": "payload generate:graphQLSchema"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.705.0",
     "@payloadcms/db-postgres": "^3.0.0",
     "@payloadcms/next": "^3.0.0",
     "@payloadcms/plugin-cloud-storage": "^3.59.1",
