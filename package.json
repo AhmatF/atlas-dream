@@ -10,7 +10,8 @@
     "lint": "next lint",
     "payload": "payload",
     "generate:types": "payload generate:types",
-    "generate:graphql": "payload generate:graphQLSchema"
+    "generate:graphql": "payload generate:graphQLSchema",
+    "migrate:images": "tsx migrate-images-to-supabase.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",
@@ -37,6 +38,7 @@
     "eslint-config-next": "15.2.3",
     "postcss": "^8.4.0",
     "tailwindcss": "^3.4.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.0"
   },
   "engines": {
