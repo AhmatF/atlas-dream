@@ -12,6 +12,7 @@ import ConciergeAlaCarte from './collections/ConciergeAlaCarte';
 import BlogPosts from './collections/BlogPosts';
 import Pages from './collections/Pages';
 import Leads from './collections/Leads';
+import { supabaseStoragePlugin } from './plugins/supabaseStorage';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
@@ -43,6 +44,9 @@ export default buildConfig({
     defaultLocale: 'en',
     fallback: true
   },
+  plugins: [
+    supabaseStoragePlugin,
+  ],
   collections: [Users, Media, Cars, Villas, ConciergePacks, ConciergeAlaCarte, BlogPosts, Pages, Leads],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts')

@@ -11,7 +11,7 @@ const Media: CollectionConfig = {
     delete: ({ req: { user } }) => !!user, // Only authenticated users can delete
   },
   upload: {
-    staticDir: 'media',
+    // staticDir removed - using Supabase Storage via plugin
     mimeTypes: ['image/*']
   },
   fields: [
