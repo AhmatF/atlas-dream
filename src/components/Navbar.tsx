@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import Logo from './Logo';
 
 interface NavbarProps {
   lang: string;
@@ -25,18 +26,13 @@ const navigation = {
   ],
 };
 
-const cta = {
-  en: 'Book a call',
-  fr: 'Réserver un appel',
-};
-
 export default function Navbar({ lang }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const currentLang = lang as 'en' | 'fr';
   const otherLang = lang === 'en' ? 'fr' : 'en';
-  const navItems = navigation[currentLang];
+  const navItems = navigation[currentLang] || navigation.en;
 
   // Replace current language in pathname
   const getLocalizedPath = (targetLang: string) => {
@@ -56,11 +52,7 @@ export default function Navbar({ lang }: NavbarProps) {
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link href={`/${lang}`} className="flex items-center">
-            <img
-              src="/logo/atlas-dream-logo.svg"
-              alt="Atlas Dream"
-              className="h-12 w-auto"
-            />
+            <Logo className="h-10 md:h-12" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -114,16 +106,6 @@ export default function Navbar({ lang }: NavbarProps) {
               </svg>
             </a>
 
-            {/* CTA Button - Desktop only */}
-            <a
-              href="https://calendly.com/atlas-dream"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:inline-flex btn btn-primary"
-            >
-              {cta[currentLang]}
-            </a>
-
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -159,14 +141,6 @@ export default function Navbar({ lang }: NavbarProps) {
                   {item.name}
                 </Link>
               ))}
-              <a
-                href="https://calendly.com/atlas-dream"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary w-full mt-2"
-              >
-                {cta[currentLang]}
-              </a>
             </div>
           </div>
         )}

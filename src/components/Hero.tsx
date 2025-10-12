@@ -34,7 +34,7 @@ export default function Hero({ headline, subheadline, imageSrc, lang }: HeroProp
   }, []);
 
   const parallaxOffset = scrollY * 0.06; // 6% parallax strength as per design tokens
-  const ctas = ctaLabels[lang as 'en' | 'fr'];
+  const ctas = ctaLabels[lang as 'en' | 'fr'] || ctaLabels.en;
 
   return (
     <section className="relative h-[720px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function Hero({ headline, subheadline, imageSrc, lang }: HeroProp
               <Link href={`/${lang}/cars`} className="btn btn-primary">
                 {ctas.primary}
               </Link>
-              <Link href={`/${lang}/villas`} className="btn btn-ghost bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20">
+              <Link href={`/${lang}/villas`} className="btn btn-ghost-light">
                 {ctas.secondary}
               </Link>
             </div>

@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/payload-types": ["./atlas-dream-starter/cms/payload/payload-types.ts"]
+      "@/payload-types": ["./src/payload/payload-types.ts"],
+      "@payload-config": ["./src/payload/payload.config.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

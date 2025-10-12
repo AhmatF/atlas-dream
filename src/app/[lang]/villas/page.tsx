@@ -1,3 +1,7 @@
+import { getPayload } from 'payload';
+import config from '@payload-config';
+import Image from 'next/image';
+
 const villasContent = {
   en: {
     title: 'Luxury Villas',
@@ -30,6 +34,14 @@ const villasContent = {
       call: 'Call us',
     },
     comingSoon: 'Our villa catalog is coming soon. Contact us to discuss your requirements.',
+    allDistricts: 'All districts',
+    bedrooms: 'bedrooms',
+    bathrooms: 'bathrooms',
+    guests: 'guests',
+    from: 'From',
+    night: '/night',
+    minNights: 'min nights',
+    viewDetails: 'View Details',
   },
   fr: {
     title: 'Villas de luxe',
@@ -62,6 +74,14 @@ const villasContent = {
       call: 'Appelez-nous',
     },
     comingSoon: 'Notre catalogue de villas arrive bientôt. Contactez-nous pour discuter de vos besoins.',
+    allDistricts: 'Tous les quartiers',
+    bedrooms: 'chambres',
+    bathrooms: 'salles de bain',
+    guests: 'personnes',
+    from: 'À partir de',
+    night: '/nuit',
+    minNights: 'nuits minimum',
+    viewDetails: 'Voir les détails',
   },
 };
 
@@ -72,6 +92,21 @@ export default async function VillasPage({
 }) {
   const { lang } = await params;
   const content = villasContent[lang as 'en' | 'fr'] || villasContent.en;
+
+  // Fetch villas from Payload CMS
+  const payload = await getPayload({ config });
+  const villasResult = await payload.find({
+    collection: 'villas',
+    where: {
+      published: {
+        equals: true,
+      },
+    },
+    locale: lang as 'en' | 'fr',
+    depth: 2, // To populate image relationships
+  });
+
+  const villas = villasResult.docs;
 
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
@@ -164,36 +199,153 @@ export default async function VillasPage({
         </div>
       </section>
 
-      {/* Coming Soon */}
+      {/* Villas Grid */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="card p-12">
-              <div className="w-20 h-20 bg-[var(--color-brass)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-[var(--color-brass)]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  />
-                </svg>
-              </div>
-              <h3
-                className="text-2xl mb-4"
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                }}
-              >
-                {content.comingSoon}
-              </h3>
+          {villas.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {villas.map((villa: any) => {
+                const firstImage = villa.images?.[0]?.image;
+                const imageUrl = typeof firstImage === 'object' && firstImage?.url ? firstImage.url : null;
+
+                return (
+                  <div
+                    key={villa.id}
+                    className="card overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-4px]"
+                  >
+                    {/* Villa Image */}
+                    {imageUrl && (
+                      <div className="relative h-64 w-full bg-[var(--color-tadelakt)]">
+                        <Image
+                          src={imageUrl}
+                          alt={villa.name || 'Villa'}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
+
+                    {/* Villa Info */}
+                    <div className="p-6">
+                      {/* District Badge */}
+                      {villa.district && (
+                        <div className="inline-block px-3 py-1 bg-[var(--color-brass)]/10 text-[var(--color-brass)] rounded-full text-sm font-medium mb-3">
+                          {villa.district}
+                        </div>
+                      )}
+
+                      {/* Villa Name */}
+                      <h3
+                        className="text-2xl mb-3"
+                        style={{
+                          fontFamily: 'var(--font-cormorant)',
+                        }}
+                      >
+                        {villa.name}
+                      </h3>
+
+                      {/* Villa Stats */}
+                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-[var(--color-muted)]">
+                        {villa.bedrooms && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            <span>{villa.bedrooms} {content.bedrooms}</span>
+                          </div>
+                        )}
+                        {villa.bathrooms && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>{villa.bathrooms} {content.bathrooms}</span>
+                          </div>
+                        )}
+                        {villa.guests && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            <span>{villa.guests} {content.guests}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Highlights */}
+                      {villa.highlights && villa.highlights.length > 0 && (
+                        <div className="mb-4">
+                          <ul className="space-y-1">
+                            {villa.highlights.slice(0, 3).map((highlight: any, idx: number) => (
+                              <li key={idx} className="text-sm text-[var(--color-ebony)] flex items-start gap-2">
+                                <svg className="w-4 h-4 text-[var(--color-brass)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{highlight.text}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Price & CTA */}
+                      <div className="mt-6 pt-4 border-t border-[var(--color-tadelakt)] flex items-center justify-between">
+                        {villa.pricePerNightNote && (
+                          <div>
+                            <div className="text-xs text-[var(--color-muted)] mb-1">{content.from}</div>
+                            <div className="text-lg font-semibold text-[var(--color-ebony)]">
+                              {villa.pricePerNightNote}
+                            </div>
+                            {villa.minNights && villa.minNights > 1 && (
+                              <div className="text-xs text-[var(--color-muted)]">
+                                {villa.minNights} {content.minNights}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        <a
+                          href={`/${lang}/villas/${villa.slug}`}
+                          className="btn btn-ghost text-[var(--color-brass)] hover:bg-[var(--color-brass)]/10"
+                        >
+                          {content.viewDetails}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </div>
+          ) : (
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="card p-12">
+                <div className="w-20 h-20 bg-[var(--color-brass)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-10 h-10 text-[var(--color-brass)]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
+                  </svg>
+                </div>
+                <h3
+                  className="text-2xl mb-4"
+                  style={{
+                    fontFamily: 'var(--font-cormorant)',
+                  }}
+                >
+                  {content.comingSoon}
+                </h3>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -225,7 +377,7 @@ export default async function VillasPage({
             </a>
             <a
               href={callLink}
-              className="btn btn-ghost border-white/30 hover:bg-white/10 inline-flex items-center gap-2"
+              className="btn btn-ghost-light inline-flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

@@ -1,0 +1,83 @@
+'use client';
+
+interface LogoProps {
+  className?: string;
+}
+
+export default function Logo({ className = 'h-10 md:h-12' }: LogoProps) {
+  return (
+    <svg
+      viewBox="0 0 280 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{ width: 'auto' }}
+    >
+      <defs>
+        {/* Gradient doré luxueux */}
+        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: '#D4AF37', stopOpacity: 1 }} />
+          <stop offset="50%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
+          <stop offset="100%" style={{ stopColor: '#C49A58', stopOpacity: 1 }} />
+        </linearGradient>
+
+        {/* Ombre portée élégante */}
+        <filter id="elegantShadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
+        </filter>
+      </defs>
+
+      {/* Ornement gauche */}
+      <g opacity="0.6">
+        <line x1="10" y1="30" x2="30" y2="30" stroke="url(#goldGradient)" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="8" cy="30" r="2" fill="url(#goldGradient)" />
+        <circle cx="32" cy="30" r="2" fill="url(#goldGradient)" />
+      </g>
+
+      {/* ATLAS - Texte principal ultra luxueux */}
+      <text
+        x="50"
+        y="35"
+        fontFamily="Cormorant Garamond, serif"
+        fontSize="28"
+        fontWeight="700"
+        fill="#1D232A"
+        letterSpacing="3"
+        filter="url(#elegantShadow)"
+      >
+        ATLAS
+      </text>
+
+      {/* Séparateur élégant */}
+      <g opacity="0.8">
+        <line x1="155" y1="25" x2="155" y2="35" stroke="url(#goldGradient)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="155" cy="22" r="1.5" fill="url(#goldGradient)" />
+        <circle cx="155" cy="38" r="1.5" fill="url(#goldGradient)" />
+      </g>
+
+      {/* DREAM - En or luxueux */}
+      <text
+        x="168"
+        y="35"
+        fontFamily="Cormorant Garamond, serif"
+        fontSize="28"
+        fontWeight="700"
+        fill="url(#goldGradient)"
+        letterSpacing="3"
+        filter="url(#elegantShadow)"
+      >
+        DREAM
+      </text>
+
+      {/* Ornement droit */}
+      <g opacity="0.6">
+        <line x1="250" y1="30" x2="270" y2="30" stroke="url(#goldGradient)" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="248" cy="30" r="2" fill="url(#goldGradient)" />
+        <circle cx="272" cy="30" r="2" fill="url(#goldGradient)" />
+      </g>
+
+      {/* Sous-ligne signature */}
+      <line x1="50" y1="45" x2="258" y2="45" stroke="url(#goldGradient)" strokeWidth="0.5" opacity="0.4" />
+    </svg>
+  );
+}

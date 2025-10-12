@@ -141,7 +141,7 @@ const gridContent = {
 };
 
 export default function BentoGrid({ lang }: BentoGridProps) {
-  const content = gridContent[lang as 'en' | 'fr'];
+  const content = gridContent[lang as 'en' | 'fr'] || gridContent.en;
 
   return (
     <section className="py-20 lg:py-28">

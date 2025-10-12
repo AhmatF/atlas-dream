@@ -68,7 +68,7 @@ const footerContent = {
 };
 
 export default function Footer({ lang }: FooterProps) {
-  const content = footerContent[lang as 'en' | 'fr'];
+  const content = footerContent[lang as 'en' | 'fr'] || footerContent.en;
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
     ? 'Hello, I would like to get more information about Atlas Dream services.'

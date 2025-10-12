@@ -1,4 +1,6 @@
-import Link from 'next/link';
+import { getPayload } from 'payload';
+import config from '@payload-config';
+import Image from 'next/image';
 
 const carsContent = {
   en: {
@@ -19,6 +21,12 @@ const carsContent = {
       call: 'Call us',
     },
     comingSoon: 'Our car inventory is coming soon. Contact us for availability.',
+    seats: 'seats',
+    transmission: 'Transmission',
+    from: 'From',
+    day: '/day',
+    withDriver: 'With driver',
+    viewDetails: 'View Details',
   },
   fr: {
     title: 'Location de voiture de luxe',
@@ -38,6 +46,12 @@ const carsContent = {
       call: 'Appelez-nous',
     },
     comingSoon: 'Notre inventaire de voitures arrive bientôt. Contactez-nous pour connaître les disponibilités.',
+    seats: 'places',
+    transmission: 'Transmission',
+    from: 'À partir de',
+    day: '/jour',
+    withDriver: 'Avec chauffeur',
+    viewDetails: 'Voir les détails',
   },
 };
 
@@ -48,6 +62,21 @@ export default async function CarsPage({
 }) {
   const { lang } = await params;
   const content = carsContent[lang as 'en' | 'fr'] || carsContent.en;
+
+  // Fetch cars from Payload CMS
+  const payload = await getPayload({ config });
+  const carsResult = await payload.find({
+    collection: 'cars',
+    where: {
+      published: {
+        equals: true,
+      },
+    },
+    locale: lang as 'en' | 'fr',
+    depth: 2, // To populate image relationships
+  });
+
+  const cars = carsResult.docs;
 
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
@@ -113,36 +142,156 @@ export default async function CarsPage({
         </div>
       </section>
 
-      {/* Coming Soon / Inventory Section */}
+      {/* Cars Grid */}
       <section className="py-20 bg-[var(--color-ivory)]">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="card p-12">
-              <div className="w-20 h-20 bg-[var(--color-brass)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-[var(--color-brass)]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h3
-                className="text-2xl mb-4"
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                }}
-              >
-                {content.comingSoon}
-              </h3>
+          {cars.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {cars.map((car: any) => {
+                const firstImage = car.images?.[0]?.image;
+                const imageUrl = typeof firstImage === 'object' && firstImage?.url ? firstImage.url : null;
+
+                return (
+                  <div
+                    key={car.id}
+                    className="card overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-4px]"
+                  >
+                    {/* Car Image */}
+                    {imageUrl && (
+                      <div className="relative h-64 w-full bg-[var(--color-tadelakt)]">
+                        <Image
+                          src={imageUrl}
+                          alt={car.name || 'Car'}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
+
+                    {/* Car Info */}
+                    <div className="p-6">
+                      {/* Brand Badge */}
+                      {car.brand && (
+                        <div className="inline-block px-3 py-1 bg-[var(--color-brass)]/10 text-[var(--color-brass)] rounded-full text-sm font-medium mb-3">
+                          {car.brand}
+                        </div>
+                      )}
+
+                      {/* Car Name */}
+                      <h3
+                        className="text-2xl mb-3"
+                        style={{
+                          fontFamily: 'var(--font-cormorant)',
+                        }}
+                      >
+                        {car.name}
+                      </h3>
+
+                      {/* Car Stats */}
+                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-[var(--color-muted)]">
+                        {car.seats && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                            <span>{car.seats} {content.seats}</span>
+                          </div>
+                        )}
+                        {car.transmission && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                            <span>{car.transmission}</span>
+                          </div>
+                        )}
+                        {car.year && (
+                          <div className="flex items-center gap-1">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span>{car.year}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Included Items */}
+                      {car.included && car.included.length > 0 && (
+                        <div className="mb-4">
+                          <ul className="space-y-1">
+                            {car.included.slice(0, 3).map((item: any, idx: number) => (
+                              <li key={idx} className="text-sm text-[var(--color-ebony)] flex items-start gap-2">
+                                <svg className="w-4 h-4 text-[var(--color-brass)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{item.text}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Price & CTA */}
+                      <div className="mt-6 pt-4 border-t border-[var(--color-tadelakt)]">
+                        {car.priceDayNote && (
+                          <div className="mb-3">
+                            <div className="text-xs text-[var(--color-muted)] mb-1">{content.from}</div>
+                            <div className="text-lg font-semibold text-[var(--color-ebony)]">
+                              {car.priceDayNote}
+                            </div>
+                          </div>
+                        )}
+                        {car.priceWithDriverNote && (
+                          <div className="mb-3">
+                            <div className="text-xs text-[var(--color-muted)] mb-1">{content.withDriver}</div>
+                            <div className="text-sm font-medium text-[var(--color-ebony)]">
+                              {car.priceWithDriverNote}
+                            </div>
+                          </div>
+                        )}
+
+                        <a
+                          href={`/${lang}/cars/${car.slug}`}
+                          className="btn btn-ghost text-[var(--color-brass)] hover:bg-[var(--color-brass)]/10 w-full"
+                        >
+                          {content.viewDetails}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </div>
+          ) : (
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="card p-12">
+                <div className="w-20 h-20 bg-[var(--color-brass)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-10 h-10 text-[var(--color-brass)]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h3
+                  className="text-2xl mb-4"
+                  style={{
+                    fontFamily: 'var(--font-cormorant)',
+                  }}
+                >
+                  {content.comingSoon}
+                </h3>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -174,7 +323,7 @@ export default async function CarsPage({
             </a>
             <a
               href={callLink}
-              className="btn btn-ghost border-white/30 hover:bg-white/10 inline-flex items-center gap-2"
+              className="btn btn-ghost-light inline-flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

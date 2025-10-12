@@ -24,6 +24,11 @@ function getLocaleFromHeader(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Skip middleware for Payload admin routes
+  if (pathname.startsWith('/admin') || pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+
   // Check if pathname already has a locale
   const pathnameHasLocale = locales.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
