@@ -99,7 +99,7 @@ export default async function VillasPage({
   const content = villasContent[lang as 'en' | 'fr'] || villasContent.en;
 
   // Fetch villas from Payload CMS with error handling
-  let villas = [];
+  let villas: any[] = [];
   try {
     const payload = await getPayload({ config });
     const villasResult = await payload.find({

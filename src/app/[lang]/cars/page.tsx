@@ -69,7 +69,7 @@ export default async function CarsPage({
   const content = carsContent[lang as 'en' | 'fr'] || carsContent.en;
 
   // Fetch cars from Payload CMS with error handling
-  let cars = [];
+  let cars: any[] = [];
   try {
     const payload = await getPayload({ config });
     const carsResult = await payload.find({
