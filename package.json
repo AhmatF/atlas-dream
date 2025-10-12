@@ -12,6 +12,7 @@
     "generate:types": "payload generate:types",
     "generate:graphql": "payload generate:graphQLSchema",
     "generate:importmap": "payload generate:importmap",
+    "generate:importmap:ts": "tsx scripts/generate-import-map.ts",
     "migrate:images": "tsx migrate-images-to-supabase.ts"
   },
   "dependencies": {

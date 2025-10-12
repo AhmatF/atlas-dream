@@ -25,7 +25,7 @@ read -p "S3_ACCESS_KEY_ID (ex: 4d0ff69b-xxxx-xxxx-xxxx-xxxxxxxxxxxx): " S3_ACCES
 read -p "S3_SECRET_ACCESS_KEY (la longue clé secrète): " S3_SECRET_ACCESS_KEY
 
 # Configuration par défaut pour Supabase
-S3_REGION="us-east-1"
+S3_REGION="eu-central-1"
 S3_ENDPOINT="https://$PROJECT_ID.supabase.co/storage/v1/s3"
 S3_BUCKET="$BUCKET_NAME"
 
