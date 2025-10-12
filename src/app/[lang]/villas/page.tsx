@@ -98,20 +98,26 @@ export default async function VillasPage({
   const { lang } = await params;
   const content = villasContent[lang as 'en' | 'fr'] || villasContent.en;
 
-  // Fetch villas from Payload CMS
-  const payload = await getPayload({ config });
-  const villasResult = await payload.find({
-    collection: 'villas',
-    where: {
-      published: {
-        equals: true,
+  // Fetch villas from Payload CMS with error handling
+  let villas = [];
+  try {
+    const payload = await getPayload({ config });
+    const villasResult = await payload.find({
+      collection: 'villas',
+      where: {
+        published: {
+          equals: true,
+        },
       },
-    },
-    locale: lang as 'en' | 'fr',
-    depth: 2, // To populate image relationships
-  });
-
-  const villas = villasResult.docs;
+      locale: lang as 'en' | 'fr',
+      depth: 2, // To populate image relationships
+    });
+    villas = villasResult.docs;
+  } catch (error) {
+    console.error('[Villas Page] Error fetching villas:', error);
+    // Return empty array to show "coming soon" message instead of crashing
+    villas = [];
+  }
 
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'

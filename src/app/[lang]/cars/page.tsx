@@ -68,20 +68,26 @@ export default async function CarsPage({
   const { lang } = await params;
   const content = carsContent[lang as 'en' | 'fr'] || carsContent.en;
 
-  // Fetch cars from Payload CMS
-  const payload = await getPayload({ config });
-  const carsResult = await payload.find({
-    collection: 'cars',
-    where: {
-      published: {
-        equals: true,
+  // Fetch cars from Payload CMS with error handling
+  let cars = [];
+  try {
+    const payload = await getPayload({ config });
+    const carsResult = await payload.find({
+      collection: 'cars',
+      where: {
+        published: {
+          equals: true,
+        },
       },
-    },
-    locale: lang as 'en' | 'fr',
-    depth: 2, // To populate image relationships
-  });
-
-  const cars = carsResult.docs;
+      locale: lang as 'en' | 'fr',
+      depth: 2, // To populate image relationships
+    });
+    cars = carsResult.docs;
+  } catch (error) {
+    console.error('[Cars Page] Error fetching cars:', error);
+    // Return empty array to show "coming soon" message instead of crashing
+    cars = [];
+  }
 
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
