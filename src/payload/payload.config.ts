@@ -16,9 +16,17 @@ import { supabaseS3StoragePlugin } from './plugins/s3Storage';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
-  serverURL:
-    process.env.PAYLOAD_PUBLIC_SERVER_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://atlasdream.vercel.app',
+  cors: [
+    'https://atlasdream.vercel.app',
+    'https://atlasdream-ai-ads.vercel.app',
+    'https://*.vercel.app',
+  ].filter(Boolean),
+  csrf: [
+    'https://atlasdream.vercel.app',
+    'https://atlasdream-ai-ads.vercel.app',
+    'https://*.vercel.app',
+  ].filter(Boolean),
 
   // Database adapter for Supabase (PostgreSQL)
   db: postgresAdapter({
