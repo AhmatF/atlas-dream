@@ -8,7 +8,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     },
+    push: false,
   }),
   collections: []
 })

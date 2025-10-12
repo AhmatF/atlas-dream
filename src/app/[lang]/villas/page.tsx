@@ -1,6 +1,11 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import Image from 'next/image';
+import { normalizeMediaUrl } from '@/lib/env';
+
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const villasContent = {
   en: {
@@ -206,7 +211,8 @@ export default async function VillasPage({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {villas.map((villa: any) => {
                 const firstImage = villa.images?.[0]?.image;
-                const imageUrl = typeof firstImage === 'object' && firstImage?.url ? firstImage.url : null;
+                const imageUrlRaw = typeof firstImage === 'object' && firstImage?.url ? firstImage.url : null;
+                const imageUrl = imageUrlRaw ? normalizeMediaUrl(imageUrlRaw) : null;
 
                 return (
                   <div

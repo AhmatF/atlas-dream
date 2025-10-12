@@ -73,3 +73,19 @@ export const env = {
   phoneNumber: process.env.NEXT_PUBLIC_PHONE_NUMBER || '+212774885461',
   calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/your-calendly-link',
 } as const;
+
+/**
+ * Normalize a media URL so it always works in production and dev.
+ * - If it's already absolute (http/https), return as-is
+ * - If it starts with /media or /api/media, prefix with the server URL for SSR safety
+ * - Otherwise return as-is
+ */
+export function normalizeMediaUrl(url: string): string {
+  if (!url) return url;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (url.startsWith('/api/media') || url.startsWith('/media')) {
+    const base = getServerUrl();
+    return `${base}${url}`;
+  }
+  return url;
+}

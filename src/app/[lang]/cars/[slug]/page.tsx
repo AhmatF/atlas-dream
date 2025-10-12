@@ -1,7 +1,12 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import Image from 'next/image';
+import { normalizeMediaUrl } from '@/lib/env';
 import { notFound } from 'next/navigation';
+
+// Force dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const carDetailContent = {
   en: {
@@ -132,7 +137,8 @@ export default async function CarDetailPage({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 {car.images.map((item: any, index: number) => {
                   const image = item.image;
-                  const imageUrl = typeof image === 'object' && image?.url ? image.url : null;
+                  const imageUrlRaw = typeof image === 'object' && image?.url ? image.url : null;
+                  const imageUrl = imageUrlRaw ? normalizeMediaUrl(imageUrlRaw) : null;
                   if (!imageUrl) return null;
 
                   return (
