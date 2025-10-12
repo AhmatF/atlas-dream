@@ -4,15 +4,20 @@ import { s3Storage } from '@payloadcms/storage-s3';
 // Enable clientUploads so the Payload admin can use the S3 upload handler
 // without falling back to the default local upload UI.
 const supabaseS3StoragePlugin = s3Storage({
-  clientUploads: true,
+  enabled: true,
   collections: {
     media: {
       prefix: 'media',
+      disableLocalStorage: true,
+      generateFileURL: ({ filename, prefix }) => {
+        const projectRef = process.env.S3_ENDPOINT?.match(/https:\/\/([^.]+)/)?.[1] || 'zbywcmcsktsjyithyvre';
+        return `https://${projectRef}.supabase.co/storage/v1/object/public/${process.env.S3_BUCKET}/${prefix}/${filename}`;
+      },
     },
   },
   bucket: process.env.S3_BUCKET || 'media',
   config: {
-    forcePathStyle: true, // Important for using Supabase
+    forcePathStyle: true,
     credentials: {
       accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
