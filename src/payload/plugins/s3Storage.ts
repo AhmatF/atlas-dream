@@ -11,7 +11,9 @@ const supabaseS3StoragePlugin = s3Storage({
       disableLocalStorage: true,
       generateFileURL: ({ filename, prefix }) => {
         const projectRef = process.env.S3_ENDPOINT?.match(/https:\/\/([^.]+)/)?.[1] || 'zbywcmcsktsjyithyvre';
-        return `https://${projectRef}.supabase.co/storage/v1/object/public/${process.env.S3_BUCKET}/${prefix}/${filename}`;
+        const bucket = process.env.S3_BUCKET || 'media';
+        const actualPrefix = prefix || 'media';
+        return `https://${projectRef}.supabase.co/storage/v1/object/public/${bucket}/${actualPrefix}/${filename}`;
       },
     },
   },
