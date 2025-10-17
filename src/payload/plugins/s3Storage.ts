@@ -19,15 +19,15 @@ const supabaseS3StoragePlugin = s3Storage({
       },
     },
   },
-  bucket: process.env.S3_BUCKET || 'media',
+  bucket: (process.env.S3_BUCKET || 'media').trim(),
   config: {
     forcePathStyle: true,
     credentials: {
-      accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+      accessKeyId: (process.env.S3_ACCESS_KEY_ID || '').trim(),
+      secretAccessKey: (process.env.S3_SECRET_ACCESS_KEY || '').trim(),
     },
-    region: process.env.S3_REGION || 'eu-central-1',
-    endpoint: process.env.S3_ENDPOINT || '',
+    region: (process.env.S3_REGION || 'eu-central-1').trim(),
+    endpoint: (process.env.S3_ENDPOINT || '').trim(),
   },
 });
 
