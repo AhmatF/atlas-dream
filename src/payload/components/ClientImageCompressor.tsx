@@ -120,14 +120,15 @@ export function ClientImageCompressor() {
 
       // Check if this file was already processed (to avoid infinite loops)
       if ((file as any).__compressed) {
-        console.log('[Atlas Dream Compressor] File already compressed, skipping')
+        console.log('[Atlas Dream Compressor] File already compressed, allowing Payload to process it')
         return
       }
 
       console.log('[Atlas Dream Compressor] Intercepting file upload:', file.name, file.size)
 
-      // Mark this event as being handled to prevent form submission
+      // CRITICAL: Stop this event completely to prevent Payload from processing the original file
       event.preventDefault()
+      event.stopPropagation()
       event.stopImmediatePropagation()
 
       try {
@@ -142,17 +143,22 @@ export function ClientImageCompressor() {
         dataTransfer.items.add(compressedFile)
         input.files = dataTransfer.files
 
-        console.log('[Atlas Dream Compressor] File replaced in input, dispatching new event')
+        console.log('[Atlas Dream Compressor] File replaced in input, triggering new change event')
 
-        // Trigger a new change event so Payload processes the compressed file
-        // Use setTimeout to ensure the event happens after the current stack
-        setTimeout(() => {
-          const newEvent = new Event('change', { bubbles: true })
-          input.dispatchEvent(newEvent)
-        }, 0)
+        // Dispatch a completely new trusted event that Payload will process
+        const newEvent = new Event('change', { bubbles: true, cancelable: true })
+        Object.defineProperty(newEvent, 'target', { value: input, writable: false })
+        input.dispatchEvent(newEvent)
+
+        console.log('[Atlas Dream Compressor] New change event dispatched with compressed file')
       } catch (error) {
         console.error('[Atlas Dream Compressor] Error during compression:', error)
-        // If compression fails, allow the original file to be uploaded
+        showStatus(`⚠ Compression failed, uploading original file`)
+
+        // If compression fails, dispatch the original event
+        const fallbackEvent = new Event('change', { bubbles: true })
+        Object.defineProperty(fallbackEvent, 'target', { value: input, writable: false })
+        input.dispatchEvent(fallbackEvent)
       }
     }
 
