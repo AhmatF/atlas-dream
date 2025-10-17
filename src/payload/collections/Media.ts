@@ -1,5 +1,6 @@
 
 import type { CollectionConfig } from 'payload';
+import { compressImage } from '../hooks/compressImage';
 
 const Media: CollectionConfig = {
   slug: 'media',
@@ -11,6 +12,9 @@ const Media: CollectionConfig = {
     delete: ({ req: { user } }) => !!user, // Only authenticated users can delete
   },
   upload: true,
+  hooks: {
+    beforeChange: [compressImage],
+  },
   fields: [
     { name: 'alt', type: 'text', localized: true, required: true }
   ]
