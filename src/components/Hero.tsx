@@ -70,19 +70,21 @@ export default function Hero({ headline, subheadline, imageSrc, lang }: HeroProp
 
       {/* Content */}
       <div className="relative h-full flex items-center">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-3xl">
             <h1
-              className="text-white mb-6 animate-fade-in-up"
+              className="text-white mb-4 sm:mb-6 animate-fade-in-up text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight"
               style={{
                 fontFamily: 'var(--font-cormorant)',
                 animationDelay: '100ms',
+                wordBreak: 'normal',
+                overflowWrap: 'break-word',
               }}
             >
               {headline}
             </h1>
             <p
-              className="text-white/90 text-xl md:text-2xl mb-8 leading-relaxed animate-fade-in-up"
+              className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed animate-fade-in-up"
               style={{
                 animationDelay: '200ms',
               }}
@@ -90,15 +92,15 @@ export default function Hero({ headline, subheadline, imageSrc, lang }: HeroProp
               {subheadline}
             </p>
             <div
-              className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up"
               style={{
                 animationDelay: '300ms',
               }}
             >
-              <Link href={`/${lang}/cars`} className="btn btn-primary">
+              <Link href={`/${lang}/cars`} className="btn btn-primary text-sm sm:text-base">
                 {ctas.primary}
               </Link>
-              <Link href={`/${lang}/villas`} className="btn btn-ghost-light">
+              <Link href={`/${lang}/villas`} className="btn btn-ghost-light text-sm sm:text-base">
                 {ctas.secondary}
               </Link>
             </div>

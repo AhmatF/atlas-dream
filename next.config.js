@@ -57,6 +57,13 @@ const computeRemotePatterns = () => {
 const nextConfig = {
   reactStrictMode: true,
 
+  // API body size limits
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb', // Increase from default 1mb
+    },
+  },
+
   // i18n routing for App Router (Next.js 15+)
   // Note: i18n is now handled via middleware in App Router
   // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization

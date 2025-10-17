@@ -17,6 +17,14 @@ import supabaseS3StoragePlugin from './plugins/s3Storage';
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://atlasdream.vercel.app',
+
+  // Upload limits
+  upload: {
+    limits: {
+      fileSize: 10000000, // 10MB in bytes
+    },
+  },
+
   cors: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',

@@ -1,17 +1,20 @@
 'use client';
 
+import { CSSProperties } from 'react';
+
 interface LogoProps {
   className?: string;
+  style?: CSSProperties;
 }
 
-export default function Logo({ className = 'h-10 md:h-12' }: LogoProps) {
+export default function Logo({ className = 'h-10 md:h-12', style }: LogoProps) {
   return (
     <svg
       viewBox="0 0 280 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      style={{ width: 'auto' }}
+      style={{ width: 'auto', ...style }}
     >
       <defs>
         {/* Gradient doré luxueux */}
