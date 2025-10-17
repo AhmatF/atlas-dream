@@ -27,7 +27,7 @@ export const compressImage: CollectionBeforeOperationHook = async ({ args, opera
 
     // Skip if not an image
     if (!metadata.width || !metadata.height) {
-      return data;
+      return args;
     }
 
     // Determine target size based on image dimensions
