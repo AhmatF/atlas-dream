@@ -5,7 +5,7 @@ const Media: CollectionConfig = {
   slug: 'media',
   admin: {
     useAsTitle: 'alt',
-    description: 'Upload images. Note: Images larger than 4MB may fail due to Vercel limits. Please compress large images before upload.',
+    description: 'Images are automatically compressed to < 200KB before upload. Compression happens in your browser before sending to the server.',
   },
   access: {
     read: () => true, // Allow public read access to all media
