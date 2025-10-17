@@ -106,6 +106,12 @@ export function ClientImageCompressor() {
 
     const handleFileInput = async (event: Event) => {
       const input = event.target as HTMLInputElement
+
+      // Only process file inputs
+      if (input.type !== 'file') {
+        return
+      }
+
       const file = input.files?.[0]
 
       if (!file) {
@@ -120,49 +126,58 @@ export function ClientImageCompressor() {
 
       // Check if this file was already processed (to avoid infinite loops)
       if ((file as any).__compressed) {
-        console.log('[Atlas Dream Compressor] File already compressed, allowing Payload to process it')
+        console.log('[Atlas Dream Compressor] File already compressed, allowing through')
         return
       }
 
       console.log('[Atlas Dream Compressor] Intercepting file upload:', file.name, file.size)
 
-      // CRITICAL: Stop this event completely to prevent Payload from processing the original file
+      // Store original event properties
+      const originalBubbles = event.bubbles
+      const originalCancelable = event.cancelable
+
+      // Stop the current event from reaching Payload
       event.preventDefault()
-      event.stopPropagation()
       event.stopImmediatePropagation()
 
-      try {
-        // Compress the image
-        const compressedFile = await compressImage(file)
+      // Compress the image in the background
+      compressImage(file)
+        .then((compressedFile) => {
+          // Mark the compressed file to avoid re-processing
+          ;(compressedFile as any).__compressed = true
 
-        // Mark the compressed file to avoid re-processing
-        ;(compressedFile as any).__compressed = true
+          // Replace the file in the input
+          const dataTransfer = new DataTransfer()
+          dataTransfer.items.add(compressedFile)
+          input.files = dataTransfer.files
 
-        // Replace the file in the input
-        const dataTransfer = new DataTransfer()
-        dataTransfer.items.add(compressedFile)
-        input.files = dataTransfer.files
+          console.log('[Atlas Dream Compressor] File replaced, dispatching change event')
 
-        console.log('[Atlas Dream Compressor] File replaced in input, triggering new change event')
+          // Create and dispatch a new change event
+          const newEvent = new Event('change', {
+            bubbles: originalBubbles,
+            cancelable: originalCancelable,
+          })
 
-        // Dispatch a completely new trusted event that Payload will process
-        const newEvent = new Event('change', { bubbles: true, cancelable: true })
-        Object.defineProperty(newEvent, 'target', { value: input, writable: false })
-        input.dispatchEvent(newEvent)
+          // Dispatch synchronously
+          input.dispatchEvent(newEvent)
 
-        console.log('[Atlas Dream Compressor] New change event dispatched with compressed file')
-      } catch (error) {
-        console.error('[Atlas Dream Compressor] Error during compression:', error)
-        showStatus(`⚠ Compression failed, uploading original file`)
+          console.log('[Atlas Dream Compressor] Compression complete, file ready for upload')
+        })
+        .catch((error) => {
+          console.error('[Atlas Dream Compressor] Error during compression:', error)
+          showStatus(`⚠ Compression failed, uploading original file`)
 
-        // If compression fails, dispatch the original event
-        const fallbackEvent = new Event('change', { bubbles: true })
-        Object.defineProperty(fallbackEvent, 'target', { value: input, writable: false })
-        input.dispatchEvent(fallbackEvent)
-      }
+          // If compression fails, allow original file through
+          const fallbackEvent = new Event('change', {
+            bubbles: originalBubbles,
+            cancelable: originalCancelable,
+          })
+          input.dispatchEvent(fallbackEvent)
+        })
     }
 
-    // Add global event listener for all file inputs
+    // Add global event listener for all file inputs with capture phase
     document.addEventListener('change', handleFileInput, true)
 
     // Add CSS animations
