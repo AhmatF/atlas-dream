@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import type { BeforeOperationHook } from 'payload';
+import type { CollectionBeforeOperationHook } from 'payload';
 
 /**
  * Compress images automatically on upload
@@ -8,7 +8,7 @@ import type { BeforeOperationHook } from 'payload';
  * - Maintains aspect ratio
  * - Converts to WebP for better compression
  */
-export const compressImage: BeforeOperationHook = async ({ args, operation }) => {
+export const compressImage: CollectionBeforeOperationHook = async ({ args, operation }) => {
   // Only compress on create or update operations
   if (operation !== 'create' && operation !== 'update') {
     return args;
