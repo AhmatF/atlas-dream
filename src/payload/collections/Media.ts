@@ -41,6 +41,7 @@ const Media: CollectionConfig = {
       },
     ],
     mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
+    filesRequiredOnCreate: false,
   },
   fields: [
     { name: 'alt', type: 'text', localized: true, required: true }
