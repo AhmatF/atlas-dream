@@ -3,6 +3,15 @@ import type { Metadata } from 'next'
 import config from '@payload-config'
 import { REST_DELETE, REST_GET, REST_PATCH, REST_POST } from '@payloadcms/next/routes'
 
+// Increase body size limit for file uploads
+export const runtime = 'nodejs'
+export const maxDuration = 60
+
+// Set body size limit to 10MB
+export const bodyParser = {
+  sizeLimit: '10mb',
+}
+
 export const GET = REST_GET(config)
 export const POST = REST_POST(config)
 export const DELETE = REST_DELETE(config)

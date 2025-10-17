@@ -13,7 +13,7 @@ const Media: CollectionConfig = {
   },
   upload: true,
   hooks: {
-    beforeChange: [compressImage],
+    beforeOperation: [compressImage],
   },
   fields: [
     { name: 'alt', type: 'text', localized: true, required: true }

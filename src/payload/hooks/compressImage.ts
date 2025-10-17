@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import type { CollectionBeforeChangeHook } from 'payload';
+import type { BeforeOperationHook } from 'payload';
 
 /**
  * Compress images automatically on upload
@@ -8,15 +8,16 @@ import type { CollectionBeforeChangeHook } from 'payload';
  * - Maintains aspect ratio
  * - Converts to WebP for better compression
  */
-export const compressImage: CollectionBeforeChangeHook = async ({ data, req, operation }) => {
-  // Only compress on create or when a new file is uploaded
+export const compressImage: BeforeOperationHook = async ({ args, operation }) => {
+  // Only compress on create or update operations
   if (operation !== 'create' && operation !== 'update') {
-    return data;
+    return args;
   }
 
   // Check if there's a file to process
-  if (!req.file || !req.file.data) {
-    return data;
+  const req = args.req;
+  if (!req?.file?.data) {
+    return args;
   }
 
   try {
@@ -96,10 +97,10 @@ export const compressImage: CollectionBeforeChangeHook = async ({ data, req, ope
 
     console.log(`✓ Image compressed: ${metadata.width}x${metadata.height} → ${Math.round(outputSize / 1024)}KB (quality: ${quality})`);
 
-    return data;
+    return args;
   } catch (error) {
     console.error('Error compressing image:', error);
     // Don't fail the upload if compression fails
-    return data;
+    return args;
   }
 };
