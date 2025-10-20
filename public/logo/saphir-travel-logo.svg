@@ -8,9 +8,9 @@
   </pattern>
   <rect x="4" y="4" width="657" height="258" fill="none" stroke="url(#lattice)" stroke-width="8"/>
 
-  <!-- Atlas Dream text -->
+  <!-- Saphir Travel text -->
   <text x="332" y="125" font-family="serif" font-size="72" font-weight="700" fill="#1D232A" text-anchor="middle" letter-spacing="-1">
-    <tspan fill="#C49A58">A</tspan>TLAS DREAM
+    <tspan fill="#C49A58">S</tspan>APHIR TRAVEL
   </text>
 
   <!-- Decorative line -->

@@ -26,11 +26,11 @@ const footerContent = {
     contact: {
       title: 'Contact',
       phone: '+212 774 885 461',
-      email: 'contact@atlasdream.ma',
+      email: 'contact@saphirtravel.com',
       whatsapp: 'WhatsApp',
     },
     legal: {
-      copyright: '© 2025 Atlas Dream. All rights reserved.',
+      copyright: '© 2025 Saphir Travel. All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
     },
@@ -56,11 +56,11 @@ const footerContent = {
     contact: {
       title: 'Contact',
       phone: '+212 774 885 461',
-      email: 'contact@atlasdream.ma',
+      email: 'contact@saphirtravel.com',
       whatsapp: 'WhatsApp',
     },
     legal: {
-      copyright: '© 2025 Atlas Dream. Tous droits réservés.',
+      copyright: '© 2025 Saphir Travel. Tous droits réservés.',
       privacy: 'Politique de confidentialité',
       terms: 'Conditions d\'utilisation',
     },
@@ -71,8 +71,8 @@ export default function Footer({ lang }: FooterProps) {
   const content = footerContent[lang as 'en' | 'fr'] || footerContent.en;
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
-    ? 'Hello, I would like to get more information about Atlas Dream services.'
-    : 'Bonjour, je souhaite obtenir plus d\'informations sur les services Atlas Dream.';
+    ? 'Hello, I would like to get more information about Saphir Travel services.'
+    : 'Bonjour, je souhaite obtenir plus d\'informations sur les services Saphir Travel.';
   const whatsappLink = `https://wa.me/${whatsappNumber.replace('+', '').replace(/\s/g, '')}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -82,7 +82,7 @@ export default function Footer({ lang }: FooterProps) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'var(--font-cormorant)' }}>
-              Atlas Dream
+              Saphir Travel
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               {content.tagline}

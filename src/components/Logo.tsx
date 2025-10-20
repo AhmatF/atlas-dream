@@ -10,7 +10,7 @@ interface LogoProps {
 export default function Logo({ className = 'h-10 md:h-12', style }: LogoProps) {
   return (
     <svg
-      viewBox="0 0 280 60"
+      viewBox="0 0 320 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
@@ -37,9 +37,9 @@ export default function Logo({ className = 'h-10 md:h-12', style }: LogoProps) {
         <circle cx="32" cy="30" r="2" fill="url(#goldGradient)" />
       </g>
 
-      {/* ATLAS - Texte principal ultra luxueux */}
+      {/* SAPHIR - Texte principal ultra luxueux */}
       <text
-        x="50"
+        x="45"
         y="35"
         fontFamily="Cormorant Garamond, serif"
         fontSize="28"
@@ -48,19 +48,19 @@ export default function Logo({ className = 'h-10 md:h-12', style }: LogoProps) {
         letterSpacing="3"
         filter="url(#elegantShadow)"
       >
-        ATLAS
+        SAPHIR
       </text>
 
       {/* Séparateur élégant */}
       <g opacity="0.8">
-        <line x1="155" y1="25" x2="155" y2="35" stroke="url(#goldGradient)" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="155" cy="22" r="1.5" fill="url(#goldGradient)" />
-        <circle cx="155" cy="38" r="1.5" fill="url(#goldGradient)" />
+        <line x1="175" y1="25" x2="175" y2="35" stroke="url(#goldGradient)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="175" cy="22" r="1.5" fill="url(#goldGradient)" />
+        <circle cx="175" cy="38" r="1.5" fill="url(#goldGradient)" />
       </g>
 
-      {/* DREAM - En or luxueux */}
+      {/* TRAVEL - En or luxueux */}
       <text
-        x="168"
+        x="188"
         y="35"
         fontFamily="Cormorant Garamond, serif"
         fontSize="28"
@@ -69,18 +69,18 @@ export default function Logo({ className = 'h-10 md:h-12', style }: LogoProps) {
         letterSpacing="3"
         filter="url(#elegantShadow)"
       >
-        DREAM
+        TRAVEL
       </text>
 
       {/* Ornement droit */}
       <g opacity="0.6">
-        <line x1="250" y1="30" x2="270" y2="30" stroke="url(#goldGradient)" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="248" cy="30" r="2" fill="url(#goldGradient)" />
-        <circle cx="272" cy="30" r="2" fill="url(#goldGradient)" />
+        <line x1="290" y1="30" x2="310" y2="30" stroke="url(#goldGradient)" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="288" cy="30" r="2" fill="url(#goldGradient)" />
+        <circle cx="312" cy="30" r="2" fill="url(#goldGradient)" />
       </g>
 
       {/* Sous-ligne signature */}
-      <line x1="50" y1="45" x2="258" y2="45" stroke="url(#goldGradient)" strokeWidth="0.5" opacity="0.4" />
+      <line x1="45" y1="45" x2="298" y2="45" stroke="url(#goldGradient)" strokeWidth="0.5" opacity="0.4" />
     </svg>
   );
 }

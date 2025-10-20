@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Atlas Dream** is a luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services. This is an MVP with bilingual support (EN/FR) focused on lead generation without online payments.
+**Saphir Travel** is a luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services. This is an MVP with bilingual support (EN/FR) focused on lead generation without online payments.
 
 **Key Architecture:**
 - **CMS Backend:** Payload CMS v3 with TypeScript collections

@@ -52,8 +52,8 @@ export default async function HomePage({
 
   const whatsappNumber = '+212774885461';
   const whatsappMessage = lang === 'en'
-    ? 'Hello, I would like to get more information about Atlas Dream services.'
-    : 'Bonjour, je souhaite obtenir plus d\'informations sur les services Atlas Dream.';
+    ? 'Hello, I would like to get more information about Saphir Travel services.'
+    : 'Bonjour, je souhaite obtenir plus d\'informations sur les services Saphir Travel.';
   const whatsappLink = `https://wa.me/${whatsappNumber.replace('+', '').replace(/\s/g, '')}?text=${encodeURIComponent(whatsappMessage)}`;
   const callLink = `tel:${whatsappNumber.replace(/\s/g, '')}`;
 

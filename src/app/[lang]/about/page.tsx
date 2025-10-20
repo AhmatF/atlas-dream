@@ -4,13 +4,13 @@ export const revalidate = 0;
 
 const aboutContent = {
   en: {
-    title: 'About Atlas Dream',
+    title: 'About Saphir Travel',
     subtitle: 'Your luxury concierge in Marrakech',
     sections: [
       {
         title: 'Who We Are',
         content:
-          'Atlas Dream is a premium concierge service dedicated to making your stay in Marrakech unforgettable. With years of local expertise and a passion for excellence, we curate exceptional experiences tailored to your desires.',
+          'Saphir Travel is a premium concierge service dedicated to making your stay in Marrakech unforgettable. With years of local expertise and a passion for excellence, we curate exceptional experiences tailored to your desires.',
       },
       {
         title: 'Our Mission',
@@ -30,13 +30,13 @@ const aboutContent = {
     },
   },
   fr: {
-    title: 'À propos d\'Atlas Dream',
+    title: 'À propos de Saphir Travel',
     subtitle: 'Votre conciergerie de luxe à Marrakech',
     sections: [
       {
         title: 'Qui Sommes-Nous',
         content:
-          'Atlas Dream est un service de conciergerie premium dédié à rendre votre séjour à Marrakech inoubliable. Avec des années d\'expertise locale et une passion pour l\'excellence, nous organisons des expériences exceptionnelles adaptées à vos désirs.',
+          'Saphir Travel est un service de conciergerie premium dédié à rendre votre séjour à Marrakech inoubliable. Avec des années d\'expertise locale et une passion pour l\'excellence, nous organisons des expériences exceptionnelles adaptées à vos désirs.',
       },
       {
         title: 'Notre Mission',

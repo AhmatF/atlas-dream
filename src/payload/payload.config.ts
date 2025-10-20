@@ -16,13 +16,15 @@ import supabaseS3StoragePlugin from './plugins/s3Storage';
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'your-secret-key',
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://atlasdream.vercel.app',
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://www.saphirtravel.com',
   cors: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'https://atlasdream.vercel.app',
     'https://atlasdream-ai-ads.vercel.app',
     'https://*.vercel.app',
+    'https://saphirtravel.com',
+    'https://www.saphirtravel.com',
   ].filter(Boolean),
   csrf: [
     'http://localhost:3000',
@@ -30,6 +32,8 @@ export default buildConfig({
     'https://atlasdream.vercel.app',
     'https://atlasdream-ai-ads.vercel.app',
     'https://*.vercel.app',
+    'https://saphirtravel.com',
+    'https://www.saphirtravel.com',
   ].filter(Boolean),
 
   // Database adapter for Supabase (PostgreSQL)
@@ -44,7 +48,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     meta: {
-      titleSuffix: ' | Atlas Dream Admin'
+      titleSuffix: ' | Saphir Travel Admin'
     },
     importMap: {
       baseDir: path.resolve(__dirname, '../')

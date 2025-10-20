@@ -1,10 +1,10 @@
-# Atlas Dream
+# Saphir Travel
 
 A luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services. Built with Next.js, Payload CMS, and bilingual support (EN/FR).
 
 ## Project Overview
 
-Atlas Dream is an MVP focused on lead generation without online payments. It features:
+Saphir Travel is an MVP focused on lead generation without online payments. It features:
 
 - **Car Rentals**: Luxury vehicles with driver options and airport meet service
 - **Villa Bookings**: Premium properties across Marrakech districts

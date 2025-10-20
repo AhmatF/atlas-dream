@@ -23,8 +23,8 @@ export async function generateMetadata({
   const { lang } = await params;
 
   const titles = {
-    en: 'Atlas Dream | Luxury Travel Marrakech',
-    fr: 'Atlas Dream | Voyage de luxe Marrakech',
+    en: 'Saphir Travel | Luxury Travel Marrakech',
+    fr: 'Saphir Travel | Voyage de luxe Marrakech',
   };
 
   const descriptions = {

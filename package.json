@@ -1,8 +1,8 @@
 {
-  "name": "atlas-dream",
+  "name": "saphir-travel",
   "version": "0.1.0",
   "private": true,
-  "description": "Atlas Dream - Luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services",
+  "description": "Saphir Travel - Luxury travel platform for Marrakech featuring car rentals, villa bookings, and concierge services",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
