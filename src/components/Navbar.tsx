@@ -15,6 +15,7 @@ const navigation = {
     { name: 'Cars', href: '/en/cars' },
     { name: 'Villas', href: '/en/villas' },
     { name: 'Concierge', href: '/en/concierge' },
+    { name: 'Partnerships', href: '/en/partnerships' },
     { name: 'Blog', href: '/en/blog' },
   ],
   fr: [
@@ -22,6 +23,7 @@ const navigation = {
     { name: 'Voitures', href: '/fr/cars' },
     { name: 'Villas', href: '/fr/villas' },
     { name: 'Conciergerie', href: '/fr/concierge' },
+    { name: 'Partenariats', href: '/fr/partnerships' },
     { name: 'Blog', href: '/fr/blog' },
   ],
 };
@@ -52,7 +54,7 @@ export default function Navbar({ lang }: NavbarProps) {
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link href={`/${lang}`} className="flex items-center flex-shrink-0">
-            <Logo className="h-7 sm:h-10 md:h-12" style={{ maxWidth: '140px' }} />
+            <Logo className="h-9 sm:h-10 md:h-11 lg:h-12" style={{ maxWidth: '120px' }} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -63,8 +65,8 @@ export default function Navbar({ lang }: NavbarProps) {
                 href={item.href}
                 className={`text-sm font-medium transition-colors duration-200 ${
                   pathname === item.href
-                    ? 'text-[var(--color-majorelle)]'
-                    : 'text-[var(--color-ebony)] hover:text-[var(--color-brass)]'
+                    ? 'text-[var(--color-sapphire-rich)]'
+                    : 'text-[var(--color-ebony)] hover:text-[var(--color-gold-brass)]'
                 }`}
               >
                 {item.name}
@@ -77,7 +79,7 @@ export default function Navbar({ lang }: NavbarProps) {
             {/* Language Switcher - Same size as icon buttons */}
             <Link
               href={getLocalizedPath(otherLang)}
-              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium rounded-full border-2 border-[var(--color-brass)] hover:bg-[var(--color-brass)] hover:text-white text-[var(--color-brass)] transition-all duration-200 flex-shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium rounded-full border-2 border-[var(--color-sapphire-rich)] hover:bg-[var(--color-sapphire-rich)] hover:text-white text-[var(--color-sapphire-rich)] transition-all duration-200 flex-shrink-0"
             >
               {otherLang.toUpperCase()}
             </Link>
@@ -87,7 +89,7 @@ export default function Navbar({ lang }: NavbarProps) {
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border-2 border-[var(--color-brass)] hover:bg-[var(--color-brass)] hover:text-white text-[var(--color-brass)] transition-all duration-200 flex-shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border-2 border-[var(--color-sapphire-rich)] hover:bg-[var(--color-sapphire-rich)] hover:text-white text-[var(--color-sapphire-rich)] transition-all duration-200 flex-shrink-0"
               aria-label="WhatsApp"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -98,7 +100,7 @@ export default function Navbar({ lang }: NavbarProps) {
             {/* Call - Uniform size */}
             <a
               href={callLink}
-              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border-2 border-[var(--color-brass)] hover:bg-[var(--color-brass)] hover:text-white text-[var(--color-brass)] transition-all duration-200 flex-shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border-2 border-[var(--color-sapphire-rich)] hover:bg-[var(--color-sapphire-rich)] hover:text-white text-[var(--color-sapphire-rich)] transition-all duration-200 flex-shrink-0"
               aria-label="Call"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -134,7 +136,7 @@ export default function Navbar({ lang }: NavbarProps) {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-base font-medium transition-colors ${
                     pathname === item.href
-                      ? 'text-[var(--color-majorelle)]'
+                      ? 'text-[var(--color-sapphire-rich)]'
                       : 'text-[var(--color-ebony)]'
                   }`}
                 >
