@@ -9,9 +9,9 @@ const Media: CollectionConfig = {
   },
   access: {
     read: () => true, // Allow public read access to all media
-    create: ({ req: { user } }) => !!user, // Only authenticated users can create
-    update: ({ req: { user } }) => !!user, // Only authenticated users can update
-    delete: ({ req: { user } }) => !!user, // Only authenticated users can delete
+    create: () => process.env.NODE_ENV === 'development' ? true : false, // Open in dev
+    update: () => process.env.NODE_ENV === 'development' ? true : false, // Open in dev
+    delete: () => process.env.NODE_ENV === 'development' ? true : false, // Open in dev
   },
   upload: true,
   fields: [
